@@ -27,6 +27,9 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import SplashScreen from 'react-native-splash-screen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import InitScreen from './src/core-plugins/init';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -58,48 +61,25 @@ function Section({children, title}: SectionProps): JSX.Element {
   );
 }
 
+const Stack = createNativeStackNavigator();
+
 function App(): JSX.Element {
   useEffect(() => {
     if (Platform.OS === 'android') SplashScreen.hide();
   }, []);
 
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  /* const isDarkMode = useColorScheme() === 'dark';*/
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Init"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <Stack.Screen name="Init" component={InitScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
