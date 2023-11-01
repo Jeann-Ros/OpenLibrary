@@ -21,8 +21,8 @@ export const Container = styled(View)`
 `;
 
 export const ImageLogo = styled(Image)`
-  max-height: 300px;
-  max-width: 300px;
+  max-height: 350px;
+  max-width: 350px;
 `;
 
 export const TextInit = styled(Text)`
