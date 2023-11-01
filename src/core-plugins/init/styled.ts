@@ -1,6 +1,7 @@
 import {Image, SafeAreaView, Text, View} from 'react-native';
 import styled from 'styled-components';
 import {Colors} from '../../assets/Colors';
+import {Fonts} from '../../assets/fonts';
 
 export const ContainerSafeAreaView = styled(SafeAreaView)`
   width: 100%;
@@ -25,6 +26,7 @@ export const ImageLogo = styled(Image)`
 `;
 
 export const TextInit = styled(Text)`
+  font-family: ${Fonts.Bold};
   font-size: 20px;
   color: ${Colors.Primary_Brown};
 `;
