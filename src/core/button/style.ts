@@ -4,7 +4,7 @@ import {Colors} from '../../assets/Colors';
 import {Fonts} from '../../assets/fonts';
 
 export const Container = styled(TouchableOpacity)`
-  background-color: ${Colors.Primary_Brown};
+  background-color: ${Colors.primary_brown};
   width: 100%;
   height: 70px;
   align-items: center;

@@ -28,5 +28,6 @@ export const ImageLogo = styled(Image)`
 export const TextInit = styled(Text)`
   font-family: ${Fonts.Bold};
   font-size: 20px;
-  color: ${Colors.Primary_Brown};
+  color: ${Colors.primary_brown};
+  margin-top: auto;
 `;

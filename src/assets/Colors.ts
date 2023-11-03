@@ -1,6 +1,6 @@
 export const Colors = {
-  Primary_Brown: '#40140A',
-  Second_Brown: '#733119',
-  Beige: '#BF7B3F',
+  primary_brown: '#40140A',
+  secondary_brown: '#733119',
+  beige: '#BF7B3F',
   White: '#F2F2F2',
 };
