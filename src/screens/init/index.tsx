@@ -13,7 +13,7 @@ export default function InitScreen(): ReactElement {
   };
 
   return (
-    <BaseScreen>
+    <BaseScreen hideHeader>
       <ImageLogo source={LogoOpen} />
       <TextInit>
         Bem vindo ao Open Library!{'\n'}Esperamos que você tenha uma ótima

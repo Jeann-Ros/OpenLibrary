@@ -11,24 +11,30 @@ export const MainWrapper = styled(View)`
   flex-direction: row;
   background-color: ${Colors.secondary_brown};
   padding-horizontal: 5%;
-  height: 70px;
+  height: 80px;
 `;
 
-export const TrailingIconWrapper = styled(TouchableOpacity)`
-  opacity: 1;
+export const TrailingIconWrapper = styled(TouchableOpacity)<{
+  shouldHide: boolean;
+}>`
+  opacity: ${props => (props.shouldHide ? '0' : '1')};
 `;
 
 export const TrailingIcon = styled(FontAwesomeIcon).attrs({
   size: 32,
   color: Colors.White,
-})``;
+})<{shouldHide: boolean}>`
+  opacity: ${props => (props.shouldHide ? '0' : '1')};
+`;
 
 export const LeadingIconWrapper = styled(TouchableOpacity)``;
 
 export const LeadingIcon = styled(FontAwesomeIcon).attrs({
   size: 32,
   color: Colors.White,
-})``;
+})<{shouldHide: boolean}>`
+  opacity: ${props => (props.shouldHide ? '0' : '1')};
+`;
 
 export const ScreenTitleWrapper = styled(View)`
   flex-direction: row;
