@@ -29,7 +29,7 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import InitScreen from './src/core-plugins/init';
+import InitScreen from './src/screens/init';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -78,6 +78,7 @@ function App(): JSX.Element {
           headerShown: false,
         }}>
         <Stack.Screen name="Init" component={InitScreen} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
