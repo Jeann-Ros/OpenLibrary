@@ -1,15 +1,11 @@
 import React from 'react';
 import {
   LeadingIcon,
-  LeadingIconWrapper,
-  MainWrapper,
+  LeadingIconWrapper, 
   ScreenTitle,
   TrailingIcon, 
   TrailingIconWrapper,
-  ScreenTitleWrapper,
-} from './screen-header.styles';
-import {faAngleLeft, faAngleRight} from '@fortawesome/free-solid-svg-icons';
-
+  ScreenTitleWrapper,xxxxxxxxxxxx
 type Props = {
   screenTitle: string;
 
