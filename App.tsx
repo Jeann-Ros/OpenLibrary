@@ -5,67 +5,24 @@
  * @format
  */
 
-import React, {useEffect} from 'react';
 import type {PropsWithChildren} from 'react';
-import {
-  Platform,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {Platform, StyleSheet, Text, useColorScheme, View} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import SplashScreen from 'react-native-splash-screen';
+import Home from './src/screens/home';
 import InitScreen from './src/screens/init';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   useEffect(() => {
-    if (Platform.OS === 'android') SplashScreen.hide();
+    if (Platform.OS === 'android') {
+      SplashScreen.hide();
+    }
   }, []);
 
   /* const isDarkMode = useColorScheme() === 'dark';*/
@@ -78,7 +35,7 @@ function App(): JSX.Element {
           headerShown: false,
         }}>
         <Stack.Screen name="Init" component={InitScreen} />
-        
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,25 +1,40 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 import {
   ChildrenScrollView,
   ChildrenWrapper,
-  MainChildrenWrapper,
   MainWrapper,
 } from './base-screen.styles';
-import ScreenHeader from './components/screen-header/screen-header';
+import ScreenHeader, {
+  PropsHeader,
+} from './components/screen-header/screen-header';
 
 type Props = {
   children: React.ReactNode;
   hasScrollView?: boolean;
   hideHeader?: boolean;
+  headerProps?: PropsHeader;
 };
 
 export default function BaseScreen({
   children,
   hasScrollView = true,
   hideHeader = false,
+  headerProps,
 }: Props) {
   const renderHeader = () => {
-    if (!hideHeader) return <ScreenHeader title="Home" />;
+    if (!hideHeader) {
+      return (
+        <ScreenHeader
+          title={headerProps.title}
+          showTrailingIcon={headerProps.showTrailingIcon}
+          showLeadingIcon={headerProps.showLeadingIcon}
+          leadingIcon={headerProps.leadingIcon}
+          trailingIcon={headerProps.trailingIcon}
+          onPressLeadingIcon={headerProps.onPressLeadingIcon}
+          onPressTrailingIcon={headerProps.onPressTrailingIcon}
+        />
+      );
+    }
   };
 
   return (
