@@ -4,5 +4,5 @@ export const Fonts = {
   ExtraBold: 'Gabarito-ExtraBold',
   Medium: 'Gabarito-Medium',
   Regular: 'Gabarito-Regular',
-  SemiBold: 'Gabarito-SemiBold',
-};
+  SemiBold: 'Gabarito-SemiBold'
+}

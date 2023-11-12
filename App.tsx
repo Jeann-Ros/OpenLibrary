@@ -5,18 +5,27 @@
  * @format
  */
 
-import type {PropsWithChildren} from 'react';
-import React, {useEffect} from 'react';
-import {Platform, StyleSheet, Text, useColorScheme, View} from 'react-native';
+import React, { useEffect } from 'react';
+import { Platform, StyleSheet } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from 'react-native-splash-screen';
 import Home from './src/screens/home';
 import InitScreen from './src/screens/init';
-const Stack = createNativeStackNavigator();
+
+export enum Routes {
+  init = 'Init',
+  home = 'Home'
+}
+
+export type RootStackParamList = {
+  Init: undefined;
+  Home: undefined;
+
+};
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
   useEffect(() => {
@@ -30,12 +39,12 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Init"
+        initialRouteName={Routes.init}
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Init" component={InitScreen} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name={Routes.init} component={InitScreen} />
+        <Stack.Screen name={Routes.home} component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
   );
