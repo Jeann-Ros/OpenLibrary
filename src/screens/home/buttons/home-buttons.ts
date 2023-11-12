@@ -1,6 +1,7 @@
-import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
-import {faBookDead, faBookOpenReader} from '@fortawesome/free-solid-svg-icons';
-import {useNavigation} from '@react-navigation/native';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faBookDead, faBookOpenReader } from '@fortawesome/free-solid-svg-icons';
+import { Routes } from '../../../../App';
+import { UseNavigation } from '../../../core/hooks/use-navigation';
 
 type HomeButtonProp = {
   index: string;
@@ -10,20 +11,20 @@ type HomeButtonProp = {
 };
 
 export default function HomeButtonsConstructor() {
-  const navigation = useNavigation();
+  const navigation = UseNavigation();
 
   const HomeButtonMenu: HomeButtonProp[] = [
     {
       index: '1',
       textButton: 'Emprestimos',
       iconButton: faBookOpenReader,
-      navigate: () => navigation.navigate('Init'),
+      navigate: () => navigation.navigate(Routes.init),
     },
     {
       index: '2',
       textButton: 'Baixa de Exemplar',
       iconButton: faBookDead,
-      navigate: () => navigation.navigate('Init'),
+      navigate: () => navigation.navigate(Routes.init),
     },
   ];
 
