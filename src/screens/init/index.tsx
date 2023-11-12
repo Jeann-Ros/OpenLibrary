@@ -1,17 +1,11 @@
 import React, {ReactElement} from 'react';
-import {Container, ContainerSafeAreaView, ImageLogo, TextInit} from './styled';
-import {Image} from 'react-native';
 import {LogoOpen} from '../../assets/images';
-import CoreButton from '../../core/button';
 import BaseScreen from '../../core/base-screen/base-screen';
+import CoreButton from '../../core/button';
+import {ImageLogo, TextInit} from './styled';
+import {CommonActions} from '@react-navigation/native';
 
-export default function InitScreen(): ReactElement {
-  () => {};
-
-  const teste = () => {
-    console.log('ChristianBR');
-  };
-
+export default function InitScreen({navigation}: any): ReactElement {
   return (
     <BaseScreen hideHeader>
       <ImageLogo source={LogoOpen} />
@@ -19,7 +13,18 @@ export default function InitScreen(): ReactElement {
         Bem vindo ao Open Library!{'\n'}Esperamos que você tenha uma ótima
         experiência usando nosso aplicativo.
       </TextInit>
-      <CoreButton style={{marginTop: 20}} text="AVANÇAR" action={teste} />
+      <CoreButton
+        style={{marginTop: 50}}
+        text="AVANÇAR"
+        action={() =>
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 1,
+              routes: [{name: 'Home'}],
+            }),
+          )
+        }
+      />
     </BaseScreen>
   );
 }

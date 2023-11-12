@@ -14,7 +14,7 @@ import {
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-type Props = {
+export type PropsHeader = {
   title: string;
   showLeadingIcon?: boolean;
   showTrailingIcon?: boolean;
@@ -32,7 +32,7 @@ export default function ScreenHeader({
   trailingIcon = faAngleRight,
   onPressLeadingIcon,
   onPressTrailingIcon,
-}: Props) {
+}: PropsHeader) {
   return (
     <MainWrapper>
       <LeadingIconWrapper
