@@ -17,7 +17,7 @@ export const Container = styled(View)`
   align-items: center;
   display: flex;
   padding: 5%;
-  background-color: ${Colors.White};
+  background-color: ${Colors.white};
 `;
 
 export const ImageLogo = styled(Image)`
