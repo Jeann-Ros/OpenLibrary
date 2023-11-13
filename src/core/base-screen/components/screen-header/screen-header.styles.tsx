@@ -22,7 +22,7 @@ export const TrailingIconWrapper = styled(TouchableOpacity)<{
 
 export const TrailingIcon = styled(FontAwesomeIcon).attrs({
   size: 32,
-  color: Colors.White,
+  color: Colors.white,
 })<{shouldHide: boolean}>`
   opacity: ${props => (props.shouldHide ? '0' : '1')};
 `;
@@ -31,7 +31,7 @@ export const LeadingIconWrapper = styled(TouchableOpacity)``;
 
 export const LeadingIcon = styled(FontAwesomeIcon).attrs({
   size: 32,
-  color: Colors.White,
+  color: Colors.white,
 })<{shouldHide: boolean}>`
   opacity: ${props => (props.shouldHide ? '0' : '1')};
 `;

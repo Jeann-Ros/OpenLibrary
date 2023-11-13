@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {
   ChildrenScrollView,
   ChildrenWrapper,
@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode;
   hasScrollView?: boolean;
   hideHeader?: boolean;
-  headerProps?: PropsHeader;
+  headerProps: PropsHeader;
 };
 
 export default function BaseScreen({
@@ -20,7 +20,7 @@ export default function BaseScreen({
   hasScrollView = true,
   hideHeader = false,
   headerProps,
-}: Props) {
+}: Props): ReactElement {
   const renderHeader = () => {
     if (!hideHeader) {
       return (
