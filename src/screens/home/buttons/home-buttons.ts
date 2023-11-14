@@ -24,7 +24,7 @@ export default function HomeButtonsConstructor() {
       index: '2',
       textButton: 'Baixa de Exemplar',
       iconButton: faBookDead,
-      navigate: () => navigation.navigate(Routes.init),
+      navigate: () => navigation.navigate(Routes.copyWriteOff),
     },
   ];
 
