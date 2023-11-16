@@ -14,17 +14,20 @@ import SplashScreen from 'react-native-splash-screen';
 import Home from './src/screens/home';
 import InitScreen from './src/screens/init';
 import LendCopy from './src/screens/lend-copy/lend-copy';
+import LoginScreen from './src/screens/login';
 
 export enum Routes {
   init = 'Init',
   home = 'Home',
   lendCopy = 'LendCopy',
+  login = 'Login',
 }
 
 export type RootStackParamList = {
   Init: undefined;
   Home: undefined;
   LendCopy: undefined;
+  Login: undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -37,7 +40,7 @@ function App(): JSX.Element {
 
   /* const isDarkMode = useColorScheme() === 'dark';*/
 
-  return (
+  return ( 
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName={Routes.init}
@@ -45,6 +48,7 @@ function App(): JSX.Element {
           headerShown: false,
         }}>
         <Stack.Screen name={Routes.init} component={InitScreen} />
+        <Stack.Screen name={Routes.login} component={LoginScreen} />
         <Stack.Screen name={Routes.home} component={Home} />
         <Stack.Screen name={Routes.lendCopy} component={LendCopy} />
       </Stack.Navigator>

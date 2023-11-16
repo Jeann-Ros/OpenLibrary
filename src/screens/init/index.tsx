@@ -21,7 +21,7 @@ export default function InitScreen({ navigation }: any): ReactElement {
           navigation.dispatch(
             CommonActions.reset({
               index: 1,
-              routes: [{ name: Routes.home }],
+              routes: [{ name: Routes.login }],
             }),
           )
         }
