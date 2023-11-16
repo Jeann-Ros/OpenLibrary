@@ -4,10 +4,30 @@ import TextField from '../../core/base-text-field/base-text-field'
 import { UseNavigation } from '../../core/hooks/use-navigation'
 import { Container } from './styled'
 import CoreButton from '../../core/button'
+import PickerCore from '../../core/base-picker/base-picker'
+import DatePickerCore from '../../core/base-date-picker/base-date-picker'
 
 export default function BaixaExemplar (): ReactElement {
-  const [exempNumber, setExempNumber] = useState<string>('')
   const navigation = UseNavigation()
+  const [exempNumber, setExempNumber] = useState<string>('')
+  const [motivoBaixa, setMotivoBaixa] = useState<string>('')
+  const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
+
+  const DataPicker = [
+    { label: 'Danificado', value: 'DANIFICADO' },
+    { label: 'Roubado', value: 'ROUBADO' },
+    { label: 'Perdido', value: 'PERDIDO' }
+  ]
+
+  /*
+
+- Exemplar id. - OK
+- Funcionário id. - OK
+- Motivo baixa (picker) - OK
+- Desc. baixa (text) - OK
+- Data baixa (Date picker) - OK
+
+*/
 
   return (
     <BaseScreen
@@ -40,85 +60,28 @@ export default function BaixaExemplar (): ReactElement {
           type="custom"
           options={{ mask: '123-456' }}
         />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
+        <PickerCore
+          value={motivoBaixa}
+          DataPicker={DataPicker}
+          onChange={value => {
+            setMotivoBaixa(value)
           }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
         />
         <TextField
           value={exempNumber}
           onChange={text => {
             setExempNumber(text)
           }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
+          label="DESCRIÇÃO"
+          placeholder="Disserte sobre a baixa..."
           type="custom"
-          options={{ mask: '123-456' }}
+          options={{ mask: 'S' }}
         />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
+        <DatePickerCore
+          onChange={value => {
+            setDataBaixa(value)
           }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
-        />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
-          }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
-        />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
-          }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
-        />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
-          }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
-        />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
-          }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
-        />
-        <TextField
-          value={exempNumber}
-          onChange={text => {
-            setExempNumber(text)
-          }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
-          type="custom"
-          options={{ mask: '123-456' }}
+          date={dataBaixa}
         />
         <CoreButton
           text="AVANÇAR"
