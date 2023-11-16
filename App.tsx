@@ -15,12 +15,14 @@ import Home from './src/screens/home'
 import InitScreen from './src/screens/init'
 import LendCopy from './src/screens/lend-copy/lend-copy'
 import BaixaExemplar from './src/screens/copy-write-off'
+import RegistrarExemplar from './src/screens/copy-register'
 
 export enum Routes {
   init = 'Init',
   home = 'Home',
   lendCopy = 'LendCopy',
   copyWriteOff = 'Baixa',
+  copyRegister = 'RegistrarE',
 }
 
 export interface RootStackParamList {
@@ -50,6 +52,10 @@ function App (): JSX.Element {
         <Stack.Screen name={Routes.home} component={Home} />
         <Stack.Screen name={Routes.lendCopy} component={LendCopy} />
         <Stack.Screen name={Routes.copyWriteOff} component={BaixaExemplar} />
+        <Stack.Screen
+          name={Routes.copyRegister}
+          component={RegistrarExemplar}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

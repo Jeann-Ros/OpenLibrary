@@ -1,40 +1,21 @@
 import React, { useState, type ReactElement } from 'react'
 import BaseScreen from '../../core/base-screen/base-screen'
 import TextField from '../../core/base-text-field/base-text-field'
+import CoreButton from '../../core/button'
 import { UseNavigation } from '../../core/hooks/use-navigation'
 import { Container } from './styled'
-import CoreButton from '../../core/button'
-import PickerCore from '../../core/base-picker/base-picker'
-import DatePickerCore from '../../core/base-date-picker/base-date-picker'
 
-export default function BaixaExemplar (): ReactElement {
+export default function RegistrarExemplar (): ReactElement {
   const navigation = UseNavigation()
   const [exempNumber, setExempNumber] = useState<string>('')
   const [funcNumber, setFuncNumber] = useState<string>('')
-  const [motivoBaixa, setMotivoBaixa] = useState<string>('')
   const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
-
-  const DataPicker = [
-    { label: 'Danificado', value: 'DANIFICADO' },
-    { label: 'Roubado', value: 'ROUBADO' },
-    { label: 'Perdido', value: 'PERDIDO' }
-  ]
-
-  /*
-
-- Exemplar id. - OK
-- Funcionário id. - OK
-- Motivo baixa (picker) - OK
-- Desc. baixa (text) - OK
-- Data baixa (Date picker) - OK
-
-*/
 
   return (
     <BaseScreen
       hasScrollView
       headerProps={{
-        title: 'Baixa de Exemplar',
+        title: 'Registro de Exemplar',
         showLeadingIcon: true,
         onPressLeadingIcon: () => {
           navigation.goBack()
@@ -46,7 +27,7 @@ export default function BaixaExemplar (): ReactElement {
           onChange={text => {
             setExempNumber(text)
           }}
-          label="NÚMERO DO EXEMPLAR"
+          label="NÚMERO DO LIVRO"
           placeholder="123456-7"
           type="custom"
           options={{ mask: '999999-9' }}
@@ -58,19 +39,10 @@ export default function BaixaExemplar (): ReactElement {
           onChange={text => {
             setFuncNumber(text)
           }}
-          label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
+          label="ANO DE LANÇAMENTO"
+          placeholder="1950"
           type="custom"
-          options={{ mask: '123-456' }}
-        />
-      </Container>
-      <Container>
-        <PickerCore
-          value={motivoBaixa}
-          DataPicker={DataPicker}
-          onChange={value => {
-            setMotivoBaixa(value)
-          }}
+          options={{ mask: '9999' }}
         />
       </Container>
       <Container>
@@ -79,21 +51,13 @@ export default function BaixaExemplar (): ReactElement {
           onChange={text => {
             setExempNumber(text)
           }}
-          label="DESCRIÇÃO"
+          label="EDIÇÃO"
           placeholder="Disserte sobre a baixa..."
           type="custom"
           options={{ mask: 'S' }}
         />
       </Container>
-      <Container>
-        <DatePickerCore
-          onChange={value => {
-            setDataBaixa(value)
-          }}
-          date={dataBaixa}
-        />
-      </Container>
-      <Container>
+      <Container style={{ paddingTop: 320 }}>
         <CoreButton
           text="AVANÇAR"
           action={() => {

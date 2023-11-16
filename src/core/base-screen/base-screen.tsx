@@ -1,25 +1,25 @@
-import React, {ReactElement} from 'react';
+import React, { type ReactElement } from 'react'
 import {
   ChildrenScrollView,
   ChildrenWrapper,
-  MainWrapper,
-} from './base-screen.styles';
+  MainWrapper
+} from './base-screen.styles'
 import ScreenHeader, {
-  PropsHeader,
-} from './components/screen-header/screen-header';
+  type PropsHeader
+} from './components/screen-header/screen-header'
 
-type Props = {
-  children: React.ReactNode;
-  hasScrollView?: boolean;
-  hideHeader?: boolean;
-  headerProps: PropsHeader;
-};
+interface Props {
+  children: React.ReactNode
+  hasScrollView?: boolean
+  hideHeader?: boolean
+  headerProps: PropsHeader
+}
 
-export default function BaseScreen({
+export default function BaseScreen ({
   children,
   hasScrollView = true,
   hideHeader = false,
-  headerProps,
+  headerProps
 }: Props): ReactElement {
   const renderHeader = () => {
     if (!hideHeader) {
@@ -33,9 +33,9 @@ export default function BaseScreen({
           onPressLeadingIcon={headerProps.onPressLeadingIcon}
           onPressTrailingIcon={headerProps.onPressTrailingIcon}
         />
-      );
+      )
     }
-  };
+  }
 
   return (
     <MainWrapper>
@@ -44,5 +44,5 @@ export default function BaseScreen({
         <ChildrenWrapper>{children}</ChildrenWrapper>
       </ChildrenScrollView>
     </MainWrapper>
-  );
+  )
 }
