@@ -22,7 +22,7 @@ export enum Routes {
   home = 'Home',
   lendCopy = 'LendCopy',
   copyWriteOff = 'Baixa',
-  copyRegister = 'RegistrarE',
+  copyRegister = 'RegistrarExemplar',
 }
 
 export interface RootStackParamList {
@@ -38,8 +38,6 @@ function App (): JSX.Element {
       SplashScreen.hide()
     }
   }, [])
-
-  /* const isDarkMode = useColorScheme() === 'dark'; */
 
   return (
     <NavigationContainer>

@@ -1,7 +1,7 @@
 import { type IconDefinition } from '@fortawesome/fontawesome-svg-core'
-import { ButtonContainer, ButtonIcon, ButtonText } from './styled'
 import { type StyleProp, type ViewStyle } from 'react-native'
 import Text from '../../../core/base-text/base-text'
+import { ButtonContainer, ButtonIcon } from './styled'
 
 interface Props {
   textButton: string

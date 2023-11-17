@@ -20,16 +20,6 @@ export default function BaixaExemplar (): ReactElement {
     { label: 'Perdido', value: 'PERDIDO' }
   ]
 
-  /*
-
-- Exemplar id. - OK
-- Funcionário id. - OK
-- Motivo baixa (picker) - OK
-- Desc. baixa (text) - OK
-- Data baixa (Date picker) - OK
-
-*/
-
   return (
     <BaseScreen
       hasScrollView
