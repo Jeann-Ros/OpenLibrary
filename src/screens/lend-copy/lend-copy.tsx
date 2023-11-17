@@ -4,6 +4,8 @@ import TextField from '../../core/base-text-field/base-text-field'
 import { MainWrapper } from './lend-copy.styles'
 import { LendCopyTranslations } from './translations'
 import { UseNavigation } from '../../core/hooks/use-navigation'
+import CoreButton from '../../core/button'
+import QueueModal from '../queue-modal'
 
 interface Props {
   children?: ReactNode
@@ -16,14 +18,15 @@ export default function LendCopy ({}: Props): ReactElement {
     setCopyNumber(text)
   }
 
-  const navigation = UseNavigation()
+  const [modalValue, setModalValue] = useState(false)
+
+  const FechaModal = (): void => {
+    setModalValue(!modalValue)
+  }
 
   return (
-    <BaseScreen
-      headerProps={{
-        title: 'Emprestar exemplar',
-        onPressLeadingIcon: navigation.goBack
-      }}>
+    <BaseScreen headerProps={{ title: 'Emprestar exemplar' }}>
+      <QueueModal modalVisible={modalValue} action={FechaModal} />
       <MainWrapper>
         <TextField
           error={{
@@ -36,6 +39,12 @@ export default function LendCopy ({}: Props): ReactElement {
           value={copyNumber}
           options={{ mask: '999999-9' }}
           label={LendCopyTranslations.copyNumber}
+        />
+        <CoreButton
+          text="Abrir modal"
+          action={() => {
+            setModalValue(!modalValue)
+          }}
         />
       </MainWrapper>
     </BaseScreen>
