@@ -1,52 +1,145 @@
-import { type ReactElement, type ReactNode, useState } from 'react'
-import BaseScreen from '../../core/base-screen/base-screen'
-import TextField from '../../core/base-text-field/base-text-field'
-import { MainWrapper } from './lend-copy.styles'
-import { LendCopyTranslations } from './translations'
-import { UseNavigation } from '../../core/hooks/use-navigation'
-import CoreButton from '../../core/button'
-import QueueModal from '../queue-modal'
+import {ReactElement, ReactNode, useState} from 'react';
+import BaseScreen from '../../core/base-screen/base-screen';
+import TextField from '../../core/base-text-field/base-text-field';
+import CoreButton from '../../core/button';
+import {UseNavigation} from '../../core/hooks/use-navigation';
+import QueueModal from '../queue-modal';
+import {
+  ButtonWrapper,
+  IndividualInputWrapper,
+  InputGroupWrapper,
+  MainWrapper,
+} from './lend-copy.styles';
+import {LendCopyTranslations} from './translations';
 
 interface Props {
-  children?: ReactNode
+  children?: ReactNode;
 }
 
-export default function LendCopy ({}: Props): ReactElement {
-  const [copyNumber, setCopyNumber] = useState('')
+export default function LendCopy({}: Props): ReactElement {
+  const {goBack} = UseNavigation();
+  const [copyNumber, setCopyNumber] = useState('');
 
   const onChangeCopyNumber = (text: string, rawText?: string) => {
-    setCopyNumber(text)
-  }
+    setCopyNumber(text);
+  };
 
-  const [modalValue, setModalValue] = useState(false)
+  const [modalValue, setModalValue] = useState(false);
 
   const FechaModal = (): void => {
-    setModalValue(!modalValue)
-  }
+    setModalValue(!modalValue);
+  };
+
+  const onPressButton = () => {};
 
   return (
-    <BaseScreen headerProps={{ title: 'Emprestar exemplar' }}>
-      <QueueModal modalVisible={modalValue} action={FechaModal} />
+    <BaseScreen
+      headerProps={{
+        title: LendCopyTranslations.screenTitle,
+        onPressLeadingIcon: goBack,
+      }}>
       <MainWrapper>
-        <TextField
-          error={{
-            hasError: true,
-            message: 'Número de exemplar inválido'
-          }}
-          placeholder="193434-3"
-          onChange={onChangeCopyNumber}
-          type="custom"
-          value={copyNumber}
-          options={{ mask: '999999-9' }}
-          label={LendCopyTranslations.copyNumber}
-        />
-        <CoreButton
-          text="Abrir modal"
-          action={() => {
-            setModalValue(!modalValue)
-          }}
-        />
+        <QueueModal modalVisible={modalValue} action={FechaModal} />
+        <InputGroupWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.copyNumber}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.title}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.author}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.publishers}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.year}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.feeDate}
+            />
+          </IndividualInputWrapper>
+          <IndividualInputWrapper>
+            <TextField
+              error={{
+                hasError: true,
+                message: 'Número de exemplar inválido',
+              }}
+              placeholder="193434-3"
+              onChange={onChangeCopyNumber}
+              type="only-numbers"
+              value={copyNumber}
+              label={LendCopyTranslations.inputs.returnForecast}
+            />
+          </IndividualInputWrapper>
+          <ButtonWrapper>
+            <CoreButton
+              action={onPressButton}
+              text={LendCopyTranslations.button}
+            />
+          </ButtonWrapper>
+        </InputGroupWrapper>
       </MainWrapper>
     </BaseScreen>
-  )
+  );
 }
