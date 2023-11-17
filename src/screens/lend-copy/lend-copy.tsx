@@ -2,6 +2,8 @@ import {ReactElement, ReactNode, useState} from 'react';
 import BaseScreen from '../../core/base-screen/base-screen';
 import TextField from '../../core/base-text-field/base-text-field';
 import CoreButton from '../../core/button';
+import {UseNavigation} from '../../core/hooks/use-navigation';
+import QueueModal from '../queue-modal';
 import {
   ButtonWrapper,
   IndividualInputWrapper,
@@ -9,11 +11,10 @@ import {
   MainWrapper,
 } from './lend-copy.styles';
 import {LendCopyTranslations} from './translations';
-import {UseNavigation} from '../../core/hooks/use-navigation';
 
-type Props = {
+interface Props {
   children?: ReactNode;
-};
+}
 
 export default function LendCopy({}: Props): ReactElement {
   const {goBack} = UseNavigation();
@@ -21,6 +22,12 @@ export default function LendCopy({}: Props): ReactElement {
 
   const onChangeCopyNumber = (text: string, rawText?: string) => {
     setCopyNumber(text);
+  };
+
+  const [modalValue, setModalValue] = useState(false);
+
+  const FechaModal = (): void => {
+    setModalValue(!modalValue);
   };
 
   const onPressButton = () => {};
@@ -32,6 +39,7 @@ export default function LendCopy({}: Props): ReactElement {
         onPressLeadingIcon: goBack,
       }}>
       <MainWrapper>
+        <QueueModal modalVisible={modalValue} action={FechaModal} />
         <InputGroupWrapper>
           <IndividualInputWrapper>
             <TextField

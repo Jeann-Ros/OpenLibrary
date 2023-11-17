@@ -1,53 +1,55 @@
-import {ReactElement, useEffect} from 'react';
-import {FlatList} from 'react-native';
-import BaseScreen from '../../core/base-screen/base-screen';
-import HomeButtons from './buttons';
-import HomeButtonsConstructor from './buttons/home-buttons';
-import {faBoxOpen} from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen } from '@fortawesome/free-solid-svg-icons'
+import React, { type ReactElement } from 'react'
+import { FlatList } from 'react-native'
+import BaseScreen from '../../core/base-screen/base-screen'
+import HomeButtons from './buttons'
+import HomeButtonsConstructor from './buttons/home-buttons'
 
-export default function Home(): ReactElement {
-  const Data = HomeButtonsConstructor();
+export default function Home (): ReactElement {
+  const Data = HomeButtonsConstructor()
 
   if (Data.length % 2 !== 0) {
     Data.push({
       index: 'erase',
       iconButton: faBoxOpen,
       textButton: 'NULL',
-      navigate: () => {},
-    });
+      navigate: () => {}
+    })
   }
 
   return (
     <BaseScreen
       headerProps={{
         title: 'OPEN LIBRARY',
-        showLeadingIcon: false,
+        showLeadingIcon: false
       }}>
       <FlatList
         data={Data}
         numColumns={2}
         horizontal={false}
         scrollEnabled={false}
-        renderItem={({item}) =>
-          item.index != 'erase' ? (
+        renderItem={({ item }) =>
+          item.index != 'erase'
+            ? (
             <HomeButtons
               iconButton={item.iconButton}
               textButton={item.textButton}
               onClick={item.navigate}
             />
-          ) : (
+              )
+            : (
             <HomeButtons
               iconButton={item.iconButton}
               textButton={item.textButton}
               onClick={item.navigate}
-              style={{opacity: 0}}
+              style={{ opacity: 0 }}
               disable={true}
             />
-          )
+              )
         }
-        contentContainerStyle={{padding: 5}}
+        contentContainerStyle={{ padding: 5 }}
         keyExtractor={item => item.index}
       />
     </BaseScreen>
-  );
+  )
 }
