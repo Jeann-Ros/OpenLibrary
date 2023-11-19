@@ -11,13 +11,17 @@ import {
   MainWrapper,
 } from './lend-copy.styles';
 import {LendCopyTranslations} from './translations';
+import {feeCartAtom} from '../../states/app-states';
+import {useAtom} from 'jotai';
+import {Copy} from '../../entities/copy';
 
 interface Props {
   children?: ReactNode;
 }
 
 export default function LendCopy({}: Props): ReactElement {
-  const {goBack} = UseNavigation();
+  const {goBack, navigate} = UseNavigation();
+  const [copyCart, setCopyCart] = useAtom(feeCartAtom);
   const [copyNumber, setCopyNumber] = useState('');
 
   const onChangeCopyNumber = (text: string, rawText?: string) => {
@@ -26,11 +30,27 @@ export default function LendCopy({}: Props): ReactElement {
 
   const [modalValue, setModalValue] = useState(false);
 
-  const FechaModal = (): void => {
+  const fecharModal = (): void => {
     setModalValue(!modalValue);
   };
 
-  const onPressButton = () => {};
+  const onPressButton = () => {
+    setCopyCart([
+      ...copyCart,
+      new Copy(
+        12313,
+        'Código Limpo',
+        ['Robert Monk'],
+        'Viva',
+        '5ª edição',
+        '2010',
+        new Date(),
+        new Date(),
+      ),
+    ]);
+
+    navigate('CopyCard');
+  };
 
   return (
     <BaseScreen
@@ -39,7 +59,7 @@ export default function LendCopy({}: Props): ReactElement {
         onPressLeadingIcon: goBack,
       }}>
       <MainWrapper>
-        <QueueModal modalVisible={modalValue} action={FechaModal} />
+        <QueueModal modalVisible={modalValue} action={fecharModal} />
         <InputGroupWrapper>
           <IndividualInputWrapper>
             <TextField
