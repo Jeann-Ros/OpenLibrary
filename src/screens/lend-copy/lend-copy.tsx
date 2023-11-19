@@ -136,6 +136,9 @@ export default function LendCopy({}: Props): ReactElement {
             <CoreButton
               action={onPressButton}
               text={LendCopyTranslations.button}
+              action={() => {
+                setModalValue(!modalValue)
+              }}
             />
           </ButtonWrapper>
         </InputGroupWrapper>

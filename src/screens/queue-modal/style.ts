@@ -1,5 +1,6 @@
 import {TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components';
+import CoreButton from '../../core/button';
 
 export const ContainerModal = styled(View)`
   width: 80%;
@@ -11,25 +12,17 @@ export const ContainerModal = styled(View)`
   border: 2px #733119;
 `;
 
-export const TOpp = styled(TouchableOpacity)`
+export const TOpp = styled(CoreButton)`
   background-color: #733119;
   width: 45%;
   height: 40%;
-  display: flex;
-  align-items: center;
-  padding-bottom: 12px;
-  border-radius: 25px;
   margin:auto;                    
 `;
 
-export const TOpp2 = styled(TouchableOpacity)`
+export const TOpp2 = styled(CoreButton)`
   background-color: #F2F2F2;
   width: 45%;
   height: 40%;
-  display: flex;
-  align-items: center;
-  padding-bottom: 7px;
-  border-radius: 25px;
   border: 4px #733119;
   margin:auto;                    
 `;
