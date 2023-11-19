@@ -1,17 +1,18 @@
 import React, { type ReactElement } from 'react'
+import { type StyleProp, type TextStyle, type ViewStyle } from 'react-native'
 import { Container, TextButton } from './style'
-import { type ViewStyle } from 'react-native'
 
 interface Props {
   text: string
   action: () => void
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
+  styleText?: StyleProp<TextStyle>
 }
 
 export default function CoreButton (item: Props): ReactElement {
   return (
     <Container style={item.style} onPress={item.action}>
-      <TextButton>{item.text}</TextButton>
+      <TextButton style={item.styleText}>{item.text}</TextButton>
     </Container>
   )
 }
