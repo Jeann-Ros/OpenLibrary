@@ -10,6 +10,7 @@ import Home from './src/screens/home';
 import InitScreen from './src/screens/init';
 import LendCopy from './src/screens/lend-copy/lend-copy';
 import LoginScreen from './src/screens/login';
+import CopyCart from './src/screens/copy-cart/copy-cart';
 
 export enum Routes {
   init = 'Init',
@@ -18,6 +19,7 @@ export enum Routes {
   copyWriteOff = 'CopyWriteOff',
   copyRegister = 'CopyRegister',
   login = 'Login',
+  copyCart = 'CopyCard',
 }
 export type RootStackParamList = {
   Init: undefined;
@@ -26,6 +28,7 @@ export type RootStackParamList = {
   Login: undefined;
   CopyWriteOff: undefined;
   CopyRegister: undefined;
+  CopyCard: undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -52,6 +55,7 @@ function App(): JSX.Element {
           name={Routes.copyRegister}
           component={RegistrarExemplar}
         />
+        <Stack.Screen name={Routes.copyCart} component={CopyCart} />
       </Stack.Navigator>
     </NavigationContainer>
   );
