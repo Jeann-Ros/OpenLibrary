@@ -4,12 +4,13 @@ import TextField from '../../core/base-text-field/base-text-field'
 import CoreButton from '../../core/button'
 import { UseNavigation } from '../../core/hooks/use-navigation'
 import { Container } from './styled'
+import DefaultTextField from '../../core/text-field-default/text-field-default'
 
 export default function RegistrarExemplar (): ReactElement {
   const navigation = UseNavigation()
   const [exempNumber, setExempNumber] = useState<string>('')
   const [funcNumber, setFuncNumber] = useState<string>('')
-  const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
+  const [editCopy, setEditCopy] = useState<string>('')
 
   return (
     <BaseScreen
@@ -46,15 +47,14 @@ export default function RegistrarExemplar (): ReactElement {
         />
       </Container>
       <Container>
-        <TextField
-          value={exempNumber}
+        <DefaultTextField
+          value={editCopy}
           onChange={text => {
-            setExempNumber(text)
+            setEditCopy(text)
           }}
           label="EDIÇÃO"
           placeholder="Disserte sobre a baixa..."
-          type="custom"
-          options={{ mask: 'S' }}
+          type="default"
         />
       </Container>
       <Container style={{ paddingTop: 320 }}>
