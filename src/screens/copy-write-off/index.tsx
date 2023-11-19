@@ -6,12 +6,14 @@ import { Container } from './styled'
 import CoreButton from '../../core/button'
 import PickerCore from '../../core/base-picker/base-picker'
 import DatePickerCore from '../../core/base-date-picker/base-date-picker'
+import DefaultTextField from '../../core/text-field-default/text-field-default'
 
 export default function BaixaExemplar (): ReactElement {
   const navigation = UseNavigation()
   const [exempNumber, setExempNumber] = useState<string>('')
   const [funcNumber, setFuncNumber] = useState<string>('')
   const [motivoBaixa, setMotivoBaixa] = useState<string>('')
+  const [descBaixa, setDescBaixa] = useState<string>('')
   const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
 
   const DataPicker = [
@@ -51,7 +53,7 @@ export default function BaixaExemplar (): ReactElement {
           label="CÓDIGO DO FUNCIONÁRIO"
           placeholder="123-456"
           type="custom"
-          options={{ mask: '123-456' }}
+          options={{ mask: '999-999' }}
         />
       </Container>
       <Container>
@@ -64,15 +66,14 @@ export default function BaixaExemplar (): ReactElement {
         />
       </Container>
       <Container>
-        <TextField
-          value={exempNumber}
+        <DefaultTextField
+          type="default"
+          value={descBaixa}
           onChange={text => {
-            setExempNumber(text)
+            setDescBaixa(text)
           }}
           label="DESCRIÇÃO"
           placeholder="Disserte sobre a baixa..."
-          type="custom"
-          options={{ mask: 'S' }}
         />
       </Container>
       <Container>
