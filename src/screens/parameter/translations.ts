@@ -1,0 +1,20 @@
+export const ParameterTranslations ={
+    screenTitle: 'Parametrização',
+  inputs: {
+    EmpNome: 'NOME DA EMPRESA',
+    EmpNomeF: 'NOME FANTASIA',
+    EmpLogoP: 'LOGO PEQUENO',
+    EmpLogoG: 'LOGO GRANDE',
+    EmpEnd: 'ENDEREÇO',
+    EmpAnoF: 'FUNDAÇÃO',
+    EmpPhone: 'TELEFONE',
+    EmpCid: 'CIDADE',
+    EmpCep: 'CEP',
+    EmpEstado: 'ESTADO',
+    EmpPais: 'PAÍS',
+    EmpMail: 'EMAIL',
+    EmpSite: 'WEBSITE',
+    EmpCnpj: 'CNPJ',
+  },
+  button: 'SALVAR',
+}

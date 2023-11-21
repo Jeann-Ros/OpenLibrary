@@ -5,6 +5,7 @@ export const Container = styled(View)`
   display: flex;
   flex: 1;
   width: 100%;
-  padding-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   justify-content: space-between;
 `;
