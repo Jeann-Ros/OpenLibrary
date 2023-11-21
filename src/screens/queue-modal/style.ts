@@ -23,7 +23,7 @@ export const TOpp2 = styled(CoreButton)`
   background-color: #F2F2F2;
   width: 45%;
   height: 40%;
-  border: 4px #733118;
+  border: 4px #733119;
   margin:auto;                    
 `;
 
