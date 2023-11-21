@@ -54,7 +54,6 @@ export default function DefaultTextField({
                     secureTextEntry={secureTextEntry}
                     keyboardType={type}
                     editable={editable}
-
                 />
             </TextFieldWrapper>
             {error?.hasError && (

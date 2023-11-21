@@ -1,14 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import { LogoOpen } from '../../assets/images';
 import BaseScreen from '../../core/base-screen/base-screen';
-import CoreButton from '../../core/button';
 import * as S from './styled';
 import { CommonActions } from '@react-navigation/native';
 import { Routes } from '../../../App';
-import { ImageLogo } from './styled';
 import CoreButtonDisabled from '../../core/button-disabled';
 import { Colors } from '../../assets/Colors';
-import TextField from '../../core/base-text-field/base-text-field';
 import DefaultTextField from '../../core/text-field-default/text-field-default';
 
 export default function LoginScreen({ navigation }: any): ReactElement {

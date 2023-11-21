@@ -10,6 +10,7 @@ import Home from './src/screens/home';
 import InitScreen from './src/screens/init';
 import LendCopy from './src/screens/lend-copy/lend-copy';
 import LoginScreen from './src/screens/login';
+import ReserveScreen from './src/screens/reserve-book';
 
 export enum Routes {
   init = 'Init',
@@ -18,6 +19,7 @@ export enum Routes {
   copyWriteOff = 'CopyWriteOff',
   copyRegister = 'CopyRegister',
   login = 'Login',
+  reserveBook = 'ReserveBook'
 }
 export type RootStackParamList = {
   Init: undefined;
@@ -26,6 +28,7 @@ export type RootStackParamList = {
   Login: undefined;
   CopyWriteOff: undefined;
   CopyRegister: undefined;
+  ReserveBook: undefined;
 };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -46,6 +49,7 @@ function App(): JSX.Element {
         <Stack.Screen name={Routes.init} component={InitScreen} />
         <Stack.Screen name={Routes.login} component={LoginScreen} />
         <Stack.Screen name={Routes.home} component={Home} />
+        <Stack.Screen name={Routes.reserveBook} component={ReserveScreen} />
         <Stack.Screen name={Routes.lendCopy} component={LendCopy} />
         <Stack.Screen name={Routes.copyWriteOff} component={BaixaExemplar} />
         <Stack.Screen
