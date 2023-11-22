@@ -5,12 +5,48 @@ import CoreButton from '../../core/button'
 import { UseNavigation } from '../../core/hooks/use-navigation'
 import { Container } from './styled'
 import DefaultTextField from '../../core/text-field-default/text-field-default'
+import ExemplarBuilder from '../../utils/ExemplarBuilder'
+import axios from 'axios'
+import { Alert } from 'react-native'
 
 export default function RegistrarExemplar (): ReactElement {
   const navigation = UseNavigation()
-  const [exempNumber, setExempNumber] = useState<string>('')
-  const [funcNumber, setFuncNumber] = useState<string>('')
+  const [bookNumber, setBookNumber] = useState<string>('')
+  const [yearNumber, setYearNumber] = useState<string>('')
   const [editCopy, setEditCopy] = useState<string>('')
+  const ipLocal = '192.168.15.5'
+  const baseUrl = `http://${ipLocal}:8080/exemplar/registrar-exemplar`
+
+  const ano = new Date().getFullYear()
+
+  const ChamadaRegistraExemplar = (): void => {
+    const data = new Date()
+
+    const configurationObject = {
+      url: baseUrl,
+      method: 'POST',
+      data: ExemplarBuilder(bookNumber, 'ATIVO', editCopy, yearNumber, data)
+    }
+
+    axios(configurationObject)
+      .then(response => {
+        if (response.status === 200) {
+          Alert.alert('Sucesso!', JSON.stringify(response.data), [
+            {
+              text: 'OK',
+              onPress: () => {
+                navigation.navigate('Home')
+              }
+            }
+          ])
+        } else {
+          throw new Error('Um erro ocorreu')
+        }
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error))
+      })
+  }
 
   return (
     <BaseScreen
@@ -24,26 +60,30 @@ export default function RegistrarExemplar (): ReactElement {
       }}>
       <Container>
         <TextField
-          value={exempNumber}
+          value={bookNumber}
           onChange={text => {
-            setExempNumber(text)
+            setBookNumber(text)
           }}
           label="NÚMERO DO LIVRO"
-          placeholder="123456-7"
+          placeholder="12345"
           type="custom"
-          options={{ mask: '999999-9' }}
+          options={{ mask: '99999' }}
         />
       </Container>
       <Container>
-        <TextField
-          value={funcNumber}
+        <DefaultTextField
+          value={yearNumber}
           onChange={text => {
-            setFuncNumber(text)
+            setYearNumber(text)
           }}
           label="ANO DE LANÇAMENTO"
           placeholder="1950"
-          type="custom"
-          options={{ mask: '9999' }}
+          type="number-pad"
+          maxLength={4}
+          error={{
+            message: 'Insira um ano valido para inserção.',
+            hasError: ano < Number(yearNumber)
+          }}
         />
       </Container>
       <Container>
@@ -53,15 +93,21 @@ export default function RegistrarExemplar (): ReactElement {
             setEditCopy(text)
           }}
           label="EDIÇÃO"
-          placeholder="Disserte sobre a baixa..."
+          placeholder="2 - Edição"
           type="default"
         />
       </Container>
       <Container style={{ paddingTop: 320 }}>
         <CoreButton
+          disable={
+            ano < Number(yearNumber) ||
+            yearNumber === '' ||
+            bookNumber === '' ||
+            editCopy === ''
+          }
           text="AVANÇAR"
           action={() => {
-            console.log('ChristianBR')
+            ChamadaRegistraExemplar()
           }}
         />
       </Container>

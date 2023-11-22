@@ -1,7 +1,8 @@
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {
-  faAddressCard,
   faBookDead,
+  faBookJournalWhills,
+  faBookOpen,
   faBookOpenReader,
 } from '@fortawesome/free-solid-svg-icons';
 import {Routes} from '../../../../App';
@@ -31,10 +32,16 @@ export default function HomeButtonsConstructor() {
       navigate: () => navigation.navigate(Routes.copyWriteOff),
     },
     {
-      index: '9',
+      index: '3',
       textButton: 'Registrar Exemplar',
-      iconButton: faAddressCard,
+      iconButton: faBookOpen,
       navigate: () => navigation.navigate(Routes.copyRegister),
+    },
+    {
+      index: '4',
+      textButton: 'Consultar Baixa',
+      iconButton: faBookJournalWhills,
+      navigate: () => navigation.navigate(Routes.exibCopyWriteOff),
     },
   ];
 
