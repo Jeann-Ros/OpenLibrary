@@ -37,15 +37,15 @@ export default function QueueModal ({
         <Text style={{textAlign:'center',width: 250,alignSelf: 'center'}}>Deseja adicionar o usuário a Fila de Espera?</Text>
           <Botoes>
           <TOpp
-            onPress={() => {
+            action={() => {
               action()
-            }}
-            ><Text style={{color: 'white'}}>CONFIRMAR</Text></TOpp>
+            }} text='CONFIRMAR'
+            ></TOpp>
             <TOpp2
-            onPress={() => {
+            action={() => {
               action()
-            }}
-            ><Text style={{color: '#733119'}}>CANCELAR</Text></TOpp2>
+            }} text='CANCELAR' styleText={{color:'#733119'}}
+            ></TOpp2>
             </Botoes>
         </ContainerModal>
       </TelaPreta>

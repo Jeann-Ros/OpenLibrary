@@ -4,6 +4,8 @@ import {
   faBookJournalWhills,
   faBookOpen,
   faBookOpenReader,
+  faList12,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import {Routes} from '../../../../App';
 import {UseNavigation} from '../../../core/hooks/use-navigation';
@@ -27,6 +29,12 @@ export default function HomeButtonsConstructor() {
     },
     {
       index: '2',
+      textButton: 'Reserva',
+      iconButton: faLock,
+      navigate: () => navigation.navigate(Routes.reserveBook),
+    },
+    {
+      index: '3',
       textButton: 'Baixa de Exemplar',
       iconButton: faBookDead,
       navigate: () => navigation.navigate(Routes.copyWriteOff),
@@ -42,6 +50,24 @@ export default function HomeButtonsConstructor() {
       textButton: 'Consultar Baixa',
       iconButton: faBookJournalWhills,
       navigate: () => navigation.navigate(Routes.exibCopyWriteOff),
+    },
+    {
+      index: '5',
+      textButton: 'Inserir Livro',
+      iconButton: faBookJournalWhills,
+      navigate: () => navigation.navigate(Routes.registerBOok),
+    },
+    {
+      index: '6',
+      textButton: 'Listar Livro',
+      iconButton: faList12,
+      navigate: () => navigation.navigate(Routes.listarLivros),
+    },
+    {
+      index: '6',
+      textButton: 'Listar Empréstimos',
+      iconButton: faList12,
+      navigate: () => navigation.navigate(Routes.listarEmprestimo),
     },
   ];
 

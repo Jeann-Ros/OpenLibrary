@@ -1,4 +1,5 @@
 import {ReactElement, ReactNode, useState} from 'react';
+import {url} from '../../conts';
 import BaseScreen from '../../core/base-screen/base-screen';
 import TextField from '../../core/base-text-field/base-text-field';
 import CoreButton from '../../core/button';
@@ -11,21 +12,37 @@ import {
   MainWrapper,
 } from './lend-copy.styles';
 import {LendCopyTranslations} from './translations';
-import {feeCartAtom} from '../../states/app-states';
 import {useAtom} from 'jotai';
-import {Copy} from '../../entities/copy';
+import SuccessModal from './sucess-modal';
+import DefaultTextField from '../../core/text-field-default/text-field-default';
 
 interface Props {
   children?: ReactNode;
 }
 
+interface CorpoRequisicao {
+  usuId: number;
+  funcId: number;
+  exempIds: number[];
+}
+
 export default function LendCopy({}: Props): ReactElement {
   const {goBack, navigate} = UseNavigation();
-  const [copyCart, setCopyCart] = useAtom(feeCartAtom);
   const [copyNumber, setCopyNumber] = useState('');
+  const [usuCode, setUsuCode] = useState('');
+  const [funcCode, setFuncCode] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const onChangeCopyNumber = (text: string, rawText?: string) => {
     setCopyNumber(text);
+  };
+
+  const onChangeUsuNumber = (text: string, rawText?: string) => {
+    setUsuCode(text);
+  };
+
+  const onChangeFuncNumber = (text: string, rawText?: string) => {
+    setFuncCode(text);
   };
 
   const [modalValue, setModalValue] = useState(false);
@@ -34,22 +51,33 @@ export default function LendCopy({}: Props): ReactElement {
     setModalValue(!modalValue);
   };
 
-  const onPressButton = () => {
-    setCopyCart([
-      ...copyCart,
-      new Copy(
-        12313,
-        'Código Limpo',
-        ['Robert Monk'],
-        'Viva',
-        '5ª edição',
-        '2010',
-        new Date(),
-        new Date(),
-      ),
-    ]);
+  const fecharSucessModel = () => {
+    setSuccess(false);
+  };
 
-    navigate('CopyCard');
+  const onSubmit = () => {
+    console.log('chamando submit');
+    const data: CorpoRequisicao = {
+      exempIds: copyNumber.split(',').map(item => parseInt(item)),
+      funcId: parseInt(funcCode),
+      usuId: parseInt(usuCode),
+    };
+    console.log(data);
+
+    fetch(`${url}/emprestimo`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => {
+        if (response.status !== 200) setModalValue(true);
+        else setSuccess(true);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -59,104 +87,52 @@ export default function LendCopy({}: Props): ReactElement {
         onPressLeadingIcon: goBack,
       }}>
       <MainWrapper>
+        <SuccessModal modalVisible={success} action={fecharSucessModel} />
         <QueueModal modalVisible={modalValue} action={fecharModal} />
         <InputGroupWrapper>
           <IndividualInputWrapper>
-            <TextField
+            <DefaultTextField
               error={{
-                hasError: true,
+                hasError: false,
                 message: 'Número de exemplar inválido',
               }}
-              placeholder="193434-3"
+              placeholder="1,2,3"
               onChange={onChangeCopyNumber}
-              type="only-numbers"
+              type="default"
               value={copyNumber}
               label={LendCopyTranslations.inputs.copyNumber}
             />
           </IndividualInputWrapper>
+
           <IndividualInputWrapper>
-            <TextField
+            <DefaultTextField
               error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
+                hasError: false,
+                message: 'Código do leitor',
               }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.title}
+              placeholder="12"
+              onChange={onChangeUsuNumber}
+              type="numeric"
+              value={usuCode}
+              label={'CÓDIGO DO LEITOR'}
             />
           </IndividualInputWrapper>
+
           <IndividualInputWrapper>
-            <TextField
+            <DefaultTextField
               error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
+                hasError: false,
+                message: 'Código do Funcionario',
               }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.author}
-            />
-          </IndividualInputWrapper>
-          <IndividualInputWrapper>
-            <TextField
-              error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
-              }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.publishers}
-            />
-          </IndividualInputWrapper>
-          <IndividualInputWrapper>
-            <TextField
-              error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
-              }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.year}
-            />
-          </IndividualInputWrapper>
-          <IndividualInputWrapper>
-            <TextField
-              error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
-              }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.feeDate}
-            />
-          </IndividualInputWrapper>
-          <IndividualInputWrapper>
-            <TextField
-              error={{
-                hasError: true,
-                message: 'Número de exemplar inválido',
-              }}
-              placeholder="193434-3"
-              onChange={onChangeCopyNumber}
-              type="only-numbers"
-              value={copyNumber}
-              label={LendCopyTranslations.inputs.returnForecast}
+              placeholder="193"
+              onChange={onChangeFuncNumber}
+              type="numeric"
+              value={funcCode}
+              label={'CÓDIGO DO FUNCIONÁRIO'}
             />
           </IndividualInputWrapper>
           <ButtonWrapper>
-            <CoreButton
-              action={onPressButton}
-              text={LendCopyTranslations.button}
-            />
+            <CoreButton action={onSubmit} text={'REGISTRAR EMPRÉSTIMO'} />
           </ButtonWrapper>
         </InputGroupWrapper>
       </MainWrapper>
