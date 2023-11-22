@@ -16,6 +16,7 @@ import InserirLivro from './src/screens/inserir-livro';
 import LivrosRelatorios from './src/screens/exibir-livros';
 import ExibirEmprestimos from './src/screens/exibir-emprestimos';
 import ReserveScreen from './src/screens/reserve-book';
+import Parameter from './src/screens/parameter';
 
 export enum Routes {
   init = 'Init',
@@ -24,12 +25,15 @@ export enum Routes {
   copyWriteOff = 'CopyWriteOff',
   copyRegister = 'CopyRegister',
   login = 'Login',
+
   copyCart = 'CopyCard',
   exibCopyWriteOff = 'ExibOff',
   registerBOok = 'RegisterBook',
   listarLivros = 'ListarLivros',
   listarEmprestimo = 'ListarEmprestimos',
-  reserveBook = 'ReserveBook'
+  reserveBook = 'ReserveBook',
+  param='Param'
+
 }
 export interface RootStackParamList {
   Init: undefined;
@@ -38,14 +42,17 @@ export interface RootStackParamList {
   Login: undefined;
   CopyWriteOff: undefined;
   CopyRegister: undefined;
+
   CopyCard: undefined;
   exibCopyWriteOff: undefined;
   RegisterBook: undefined;
   ListarLivros: undefined;
   ListarEmprestimos: undefined;
-}
   ReserveBook: undefined;
-};
+
+  Param: undefined;
+}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
@@ -64,6 +71,7 @@ function App(): JSX.Element {
         }}>
         <Stack.Screen name={Routes.init} component={InitScreen} />
         <Stack.Screen name={Routes.login} component={LoginScreen} />
+        <Stack.Screen name={Routes.param} component={Parameter}/>
         <Stack.Screen name={Routes.home} component={Home} />
         <Stack.Screen name={Routes.reserveBook} component={ReserveScreen} />
         <Stack.Screen name={Routes.lendCopy} component={LendCopy} />
