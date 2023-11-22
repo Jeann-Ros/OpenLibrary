@@ -1,48 +1,47 @@
-import React, { type ReactElement, useState } from 'react'
-import { LogoOpen } from '../../assets/images'
-import BaseScreen from '../../core/base-screen/base-screen'
-import CoreButton from '../../core/button'
-import * as S from './styled'
-import { CommonActions } from '@react-navigation/native'
-import { Routes } from '../../../App'
-import { ImageLogo } from './styled'
-import CoreButtonDisabled from '../../core/button-disabled'
-import { Colors } from '../../assets/Colors'
-import TextField from '../../core/base-text-field/base-text-field'
-import DefaultTextField from '../../core/text-field-default/text-field-default'
+import {CommonActions} from '@react-navigation/native';
+import {default as React, useState, type ReactElement} from 'react';
+import {Routes} from '../../../App';
+import {Colors} from '../../assets/Colors';
+import {LogoOpen} from '../../assets/images';
+import BaseScreen from '../../core/base-screen/base-screen';
+import CoreButtonDisabled from '../../core/button-disabled';
+import DefaultTextField from '../../core/text-field-default/text-field-default';
+import * as S from './styled';
 
-export default function LoginScreen ({ navigation }: any): ReactElement {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+export default function LoginScreen({navigation}: any): ReactElement {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
   const handleInputChange = (input: string, text: string) => {
-    if (input === 'email') setEmail(text)
-    else if (input === 'password') setPassword(text)
+    if (input === 'email') setEmail(text);
+    else if (input === 'password') setPassword(text);
     setIsButtonDisabled(
-      !emailRegex.test(email) || !passwordRegex.test(password)
-    )
-  }
+      !emailRegex.test(email) || !passwordRegex.test(password),
+    );
+  };
 
   const handleErrorInput = (input: string) => {
-    if (input === 'email') return !emailRegex.test(email)
-    else return !passwordRegex.test(password)
-  }
+    if (input === 'email') return !emailRegex.test(email);
+    else return !passwordRegex.test(password);
+  };
 
   return (
-    <BaseScreen hideHeader hasScrollView={false}>
+    <BaseScreen headerProps={{title: ''}} hideHeader hasScrollView={false}>
       <S.ImageLogo source={LogoOpen} />
       <S.Container>
         <DefaultTextField
           error={{
             hasError: handleErrorInput('email'),
-            message: 'email inválido'
+            message: 'email inválido',
           }}
           placeholder="meuemail@email.com"
-          onChange={text => { handleInputChange('email', text) }}
+          onChange={text => {
+            handleInputChange('email', text);
+          }}
           type="email-address"
           value={email}
           label={'Email'}
@@ -50,10 +49,12 @@ export default function LoginScreen ({ navigation }: any): ReactElement {
         <DefaultTextField
           error={{
             hasError: handleErrorInput('password'),
-            message: 'senha inválida'
+            message: 'senha inválida',
           }}
           placeholder="***********"
-          onChange={text => { handleInputChange('password', text) }}
+          onChange={text => {
+            handleInputChange('password', text);
+          }}
           type="default"
           value={password}
           label={'Senha'}
@@ -65,7 +66,7 @@ export default function LoginScreen ({ navigation }: any): ReactElement {
           marginTop: 50,
           backgroundColor: isButtonDisabled
             ? Colors.gray
-            : Colors.primary_brown
+            : Colors.primary_brown,
         }}
         text="AVANÇAR"
         disable={isButtonDisabled}
@@ -73,11 +74,11 @@ export default function LoginScreen ({ navigation }: any): ReactElement {
           navigation.dispatch(
             CommonActions.reset({
               index: 1,
-              routes: [{ name: Routes.home }]
-            })
+              routes: [{name: Routes.home}],
+            }),
           )
         }
       />
     </BaseScreen>
-  )
+  );
 }

@@ -5,6 +5,7 @@ import {
   faBookOpen,
   faBookOpenReader,
   faList12,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons';
 import {Routes} from '../../../../App';
 import {UseNavigation} from '../../../core/hooks/use-navigation';
@@ -28,6 +29,12 @@ export default function HomeButtonsConstructor() {
     },
     {
       index: '2',
+      textButton: 'Reserva',
+      iconButton: faLock,
+      navigate: () => navigation.navigate(Routes.reserveBook),
+    },
+    {
+      index: '3',
       textButton: 'Baixa de Exemplar',
       iconButton: faBookDead,
       navigate: () => navigation.navigate(Routes.copyWriteOff),
