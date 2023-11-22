@@ -1,12 +1,15 @@
+import axios from 'axios'
 import React, { useState, type ReactElement } from 'react'
+import DatePickerCore from '../../core/base-date-picker/base-date-picker'
+import PickerCore from '../../core/base-picker/base-picker'
 import BaseScreen from '../../core/base-screen/base-screen'
 import TextField from '../../core/base-text-field/base-text-field'
-import { UseNavigation } from '../../core/hooks/use-navigation'
-import { Container } from './styled'
 import CoreButton from '../../core/button'
-import PickerCore from '../../core/base-picker/base-picker'
-import DatePickerCore from '../../core/base-date-picker/base-date-picker'
+import { UseNavigation } from '../../core/hooks/use-navigation'
 import DefaultTextField from '../../core/text-field-default/text-field-default'
+import BaixaBuilder from '../../utils/BaixaBulder'
+import { Container } from './styled'
+import { Alert } from 'react-native'
 
 export default function BaixaExemplar (): ReactElement {
   const navigation = UseNavigation()
@@ -15,6 +18,41 @@ export default function BaixaExemplar (): ReactElement {
   const [motivoBaixa, setMotivoBaixa] = useState<string>('')
   const [descBaixa, setDescBaixa] = useState<string>('')
   const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
+  const ipLocal = '192.168.15.5'
+  const baseUrl = `http://${ipLocal}:8080/baixa/realizar-baixa`
+
+  const ChamadaRegistraBaixa = (): void => {
+    const configurationObject = {
+      url: baseUrl,
+      method: 'POST',
+      data: BaixaBuilder(
+        exempNumber,
+        funcNumber,
+        motivoBaixa,
+        descBaixa,
+        dataBaixa
+      )
+    }
+
+    axios(configurationObject)
+      .then(response => {
+        if (response.status === 200) {
+          Alert.alert('Sucesso!', JSON.stringify(response.data), [
+            {
+              text: 'OK',
+              onPress: () => {
+                navigation.navigate('Home')
+              }
+            }
+          ])
+        } else {
+          throw new Error('Um erro ocorreu')
+        }
+      })
+      .catch(error => {
+        console.log(JSON.stringify(error))
+      })
+  }
 
   const DataPicker = [
     { label: 'Danificado', value: 'DANIFICADO' },
@@ -39,9 +77,9 @@ export default function BaixaExemplar (): ReactElement {
             setExempNumber(text)
           }}
           label="NÚMERO DO EXEMPLAR"
-          placeholder="123456-7"
+          placeholder="12345"
           type="custom"
-          options={{ mask: '999999-9' }}
+          options={{ mask: '99999' }}
         />
       </Container>
       <Container>
@@ -51,9 +89,9 @@ export default function BaixaExemplar (): ReactElement {
             setFuncNumber(text)
           }}
           label="CÓDIGO DO FUNCIONÁRIO"
-          placeholder="123-456"
+          placeholder="123456"
           type="custom"
-          options={{ mask: '999-999' }}
+          options={{ mask: '999999' }}
         />
       </Container>
       <Container>
@@ -86,9 +124,15 @@ export default function BaixaExemplar (): ReactElement {
       </Container>
       <Container>
         <CoreButton
+          disable={
+            exempNumber === '' ||
+            funcNumber === '' ||
+            motivoBaixa === '' ||
+            descBaixa === ''
+          }
           text="AVANÇAR"
           action={() => {
-            console.log('ChristianBR')
+            ChamadaRegistraBaixa()
           }}
         />
       </Container>

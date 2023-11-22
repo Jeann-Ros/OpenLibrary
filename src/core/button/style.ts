@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import {Colors} from '../../assets/Colors';
 import {Fonts} from '../../assets/fonts';
 
-export const Container = styled(TouchableOpacity)`
-  background-color: ${Colors.primary_brown};
+export const Container = styled(TouchableOpacity)<{disabled?: boolean}>`
+  background-color: ${props =>
+    props.disabled ? Colors.gray : Colors.primary_brown};
   width: 100%;
   height: 70px;
   align-items: center;

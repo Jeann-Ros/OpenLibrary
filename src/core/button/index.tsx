@@ -7,12 +7,19 @@ interface Props {
   action: () => void
   style?: StyleProp<ViewStyle>
   styleText?: StyleProp<TextStyle>
+  disable?: boolean
 }
 
-export default function CoreButton (item: Props): ReactElement {
+export default function CoreButton ({
+  text,
+  action,
+  style,
+  styleText,
+  disable = false
+}: Props): ReactElement {
   return (
-    <Container style={item.style} onPress={item.action}>
-      <TextButton style={item.styleText}>{item.text}</TextButton>
+    <Container disabled={disable} style={style} onPress={action}>
+      <TextButton style={styleText}>{text}</TextButton>
     </Container>
   )
 }

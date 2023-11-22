@@ -23,6 +23,7 @@ interface Props {
   }
   secureTextEntry?: boolean
   editable?: boolean
+  maxLength?: number
 }
 
 export default function DefaultTextField ({
@@ -33,7 +34,8 @@ export default function DefaultTextField ({
   placeholder,
   error = { hasError: false, message: '' },
   secureTextEntry,
-  editable
+  editable,
+  maxLength
 }: Props): ReactElement {
   return (
     <TextFieldMainWrapper>
@@ -53,6 +55,7 @@ export default function DefaultTextField ({
           secureTextEntry={secureTextEntry}
           keyboardType={type}
           editable={editable}
+          maxLength={maxLength}
         />
       </TextFieldWrapper>
       {error?.hasError && (
