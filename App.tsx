@@ -13,6 +13,8 @@ import InitScreen from './src/screens/init';
 import LendCopy from './src/screens/lend-copy/lend-copy';
 import LoginScreen from './src/screens/login';
 import InserirLivro from './src/screens/inserir-livro';
+import LivrosRelatorios from './src/screens/exibir-livros';
+import ExibirEmprestimos from './src/screens/exibir-emprestimos';
 
 export enum Routes {
   init = 'Init',
@@ -24,6 +26,8 @@ export enum Routes {
   copyCart = 'CopyCard',
   exibCopyWriteOff = 'ExibOff',
   registerBOok = 'RegisterBook',
+  listarLivros = 'ListarLivros',
+  listarEmprestimo = 'ListarEmprestimos',
 }
 export interface RootStackParamList {
   Init: undefined;
@@ -35,6 +39,8 @@ export interface RootStackParamList {
   CopyCard: undefined;
   exibCopyWriteOff: undefined;
   RegisterBook: undefined;
+  ListarLivros: undefined;
+  ListarEmprestimos: undefined;
 }
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -66,7 +72,14 @@ function App(): JSX.Element {
           component={RegistrarExemplar}
         />
         <Stack.Screen name={Routes.copyCart} component={CopyCart} />
+
+        <Stack.Screen name={Routes.listarLivros} component={LivrosRelatorios} />
+
         <Stack.Screen name={Routes.registerBOok} component={InserirLivro} />
+        <Stack.Screen
+          name={Routes.listarEmprestimo}
+          component={ExibirEmprestimos}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

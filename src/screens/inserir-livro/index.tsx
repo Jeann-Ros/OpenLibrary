@@ -9,7 +9,7 @@ import CoreButton from '../../core/button';
 import {UseNavigation} from '../../core/hooks/use-navigation';
 import {Container} from './styled';
 import DefaultTextField from '../../core/text-field-default/text-field-default';
-import { url } from '../../conts';
+import {url} from '../../conts';
 
 export default function InserirLivro(): ReactElement {
   const navigation = UseNavigation();
@@ -26,29 +26,55 @@ export default function InserirLivro(): ReactElement {
   >([]);
 
   useEffect(() => {
-    GetCategoriasApi().then(value => setCategoriaList(value));
-    GetEditorasApi().then(value => setEditoraList(value));
+    GetCategoriasApi()
+      .then(value => {
+        setCategoriaList(value);
+      })
+      .catch(() => {});
+    GetEditorasApi()
+      .then(value => {
+        setEditoraList(value);
+      })
+      .catch(() => {});
   }, []);
 
   const mapListToItems = (
-    list: {
+    list: Array<{
       id: number;
       nome: string;
-    }[],
-  ): {label: string; value: string}[] => {
+    }>,
+  ): Array<{label: string; value: string}> => {
     return list.map(item => ({label: item.nome, value: String(item.id)}));
   };
 
   const onSubmit = () => {
+    console.log('chamando submit');
     const data = {
       nome: nomeLivro,
-      editoraId: editora,
-      autoresId: autores.split(','),
-      dataLancamento: dataLancamento,
-      categoriaId: categoria,
+      editoraId: parseInt(editora),
+      autoresId: autores.split(',').map(id => parseInt(id)),
+      dataLancamento: dataLancamento.toISOString().slice(0, 10),
+      categoriaId: parseInt(categoria),
     };
+    console.log(data);
 
-    fetch(`${url}`)
+    fetch(`${url}/livro`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(respose => {})
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const isButtonDisabled = () => {
+    return (
+      nomeLivro === '' || autores === '' || editora === '' || categoria === ''
+    );
   };
 
   return (
@@ -80,7 +106,7 @@ export default function InserirLivro(): ReactElement {
             setAutores(text);
           }}
           label="AUTORES IDS"
-          placeholder="Clean code"
+          placeholder="1,2,3"
         />
       </Container>
       <Container>
@@ -111,7 +137,11 @@ export default function InserirLivro(): ReactElement {
         />
       </Container>
       <Container>
-        <CoreButton text="AVANÇAR" action={() => {}} />
+        <CoreButton
+          disable={isButtonDisabled()}
+          text="AVANÇAR"
+          action={onSubmit}
+        />
       </Container>
     </BaseScreen>
   );
