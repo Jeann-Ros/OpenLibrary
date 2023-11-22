@@ -43,6 +43,12 @@ export default function HomeButtonsConstructor() {
       iconButton: faBookJournalWhills,
       navigate: () => navigation.navigate(Routes.exibCopyWriteOff),
     },
+    {
+      index: '5',
+      textButton: 'Inserir Livro',
+      iconButton: faBookJournalWhills,
+      navigate: () => navigation.navigate(Routes.registerBOok),
+    },
   ];
 
   return HomeButtonMenu;
