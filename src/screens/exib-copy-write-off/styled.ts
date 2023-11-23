@@ -18,8 +18,10 @@ export const ContainerItem = styled(View)`
   flex: 1;
   width: 80%;
   margin-top: 10px;
-
+  border-radius: 25px;
+  padding: 10px;
   align-self: center;
+  elevation: 4px;
   background-color: ${Colors.gray};
 `;
 
