@@ -18,7 +18,7 @@ export default function BaixaExemplar (): ReactElement {
   const [motivoBaixa, setMotivoBaixa] = useState<string>('')
   const [descBaixa, setDescBaixa] = useState<string>('')
   const [dataBaixa, setDataBaixa] = useState<Date>(new Date())
-  const ipLocal = '192.168.15.5'
+  const ipLocal = '172.17.18.199'
   const baseUrl = `http://${ipLocal}:8080/baixa/realizar-baixa`
 
   const ChamadaRegistraBaixa = (): void => {
@@ -96,6 +96,7 @@ export default function BaixaExemplar (): ReactElement {
       </Container>
       <Container>
         <PickerCore
+          label="SEILÁ MANO"
           value={motivoBaixa}
           DataPicker={DataPicker}
           onChange={value => {
