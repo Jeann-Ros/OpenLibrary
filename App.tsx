@@ -43,9 +43,9 @@ export interface RootStackParamList {
   RegisterBook: undefined;
   ListarLivros: undefined;
   ListarEmprestimos: undefined;
-}
   ReserveBook: undefined;
-};
+}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
