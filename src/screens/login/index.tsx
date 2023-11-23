@@ -16,11 +16,67 @@ export default function LoginScreen({navigation}: any): ReactElement {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
-  const handleInputChange = (input: string, text: string) => {
-    if (input === 'email') setEmail(text);
-    else if (input === 'password') setPassword(text);
-    setIsButtonDisabled(
-      !emailRegex.test(email) || !passwordRegex.test(password),
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+
+    const handleInputChange = (input: string, text: string) => {
+        if (input === 'email')
+            setEmail(text);
+        else if (input === 'password')
+            setPassword(text);
+        setIsButtonDisabled(!emailRegex.test(email) || !passwordRegex.test(password))
+    }
+
+    const handleErrorInput = (input: string) => {
+        if (input === 'email')
+            return !emailRegex.test(email);
+        else
+            return !passwordRegex.test(password);
+    }
+
+    return (
+        <BaseScreen hideHeader hasScrollView={false}>
+            <S.ImageLogo source={LogoOpen} />
+            <S.Container>
+                <DefaultTextField
+                    error={{
+                        hasError: handleErrorInput('email'),
+                        message: 'email inválido',
+                    }}
+                    placeholder="meuemail@email.com"
+                    onChange={(text) => handleInputChange('email', text)}
+                    type="email-address"
+                    value={email}
+                    label={"Email"}
+
+                />
+                <DefaultTextField
+                    error={{
+                        hasError: handleErrorInput('password'),
+                        message: 'senha inválida',
+                    }}
+                    placeholder="***********"
+                    onChange={(text) => handleInputChange('password', text)}
+                    type="default"
+                    value={password}
+                    label={"Senha"}
+                    secureTextEntry={true}
+                />
+            </S.Container>
+            <CoreButtonDisabled
+                style={{ marginTop: 50, backgroundColor: isButtonDisabled ? Colors.gray : Colors.primary_brown }}
+                text="AVANÇAR"
+                disable={isButtonDisabled}
+                action={() =>
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            index: 1,
+                            routes: [{ name: Routes.param }],
+                        }),
+                    )
+                }
+            />
+        </BaseScreen>
     );
   };
 
