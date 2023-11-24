@@ -14,7 +14,7 @@ export default function RegistrarExemplar (): ReactElement {
   const [bookNumber, setBookNumber] = useState<string>('')
   const [yearNumber, setYearNumber] = useState<string>('')
   const [editCopy, setEditCopy] = useState<string>('')
-  const ipLocal = '192.168.15.5'
+  const ipLocal = '172.17.18.199'
   const baseUrl = `http://${ipLocal}:8080/exemplar/registrar-exemplar`
 
   const ano = new Date().getFullYear()

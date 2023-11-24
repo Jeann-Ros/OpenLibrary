@@ -24,6 +24,7 @@ interface Props {
   secureTextEntry?: boolean
   editable?: boolean
   maxLength?: number
+  acitonExit: () => void
 }
 
 export default function DefaultTextField ({
@@ -35,7 +36,8 @@ export default function DefaultTextField ({
   error = { hasError: false, message: '' },
   secureTextEntry,
   editable,
-  maxLength
+  maxLength,
+  acitonExit
 }: Props): ReactElement {
   return (
     <TextFieldMainWrapper>
@@ -56,6 +58,7 @@ export default function DefaultTextField ({
           keyboardType={type}
           editable={editable}
           maxLength={maxLength}
+          onBlur={acitonExit}
         />
       </TextFieldWrapper>
       {error?.hasError && (
