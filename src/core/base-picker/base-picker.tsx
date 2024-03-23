@@ -1,4 +1,4 @@
-import React, { type ReactElement } from 'react'
+import React, {type ReactElement} from 'react';
 import {
   ErrorContainer,
   ErrorMessage,
@@ -6,37 +6,39 @@ import {
   LabelContainer,
   PickerContainer,
   PickerField,
-  PickerTextContainer
-} from './base-picker-style'
+  PickerTextContainer,
+} from './base-picker-style';
 
 interface Item {
-  label: string
-  value: any
-  key?: string | number
-  color?: string
+  label: string;
+  value: any;
+  key?: string | number;
+  color?: string;
   /**
    * Used when you want a different label displayed
    * on the input than what is displayed on the Picker
    *
    * If falsy, label is used
    */
-  inputLabel?: string
+  inputLabel?: string;
 }
 
 interface Props {
-  value: any
-  DataPicker: Item[]
-  error?: { hasError: boolean, message: string }
-  label?: string
-  onChange: (value: any, index: number) => void
+  value: any;
+  DataPicker: Item[];
+  error?: {hasError: boolean; message: string};
+  label?: string;
+  placeholder?: string;
+  onChange: (value: any, index: number) => void;
 }
 
-export default function PickerCore ({
+export default function PickerCore({
   DataPicker,
   error,
   label = 'SELECIONE UMA OPÇÃO',
+  placeholder = 'Selecione uma opção...',
   value,
-  onChange
+  onChange,
 }: Props): ReactElement {
   return (
     <PickerContainer>
@@ -48,7 +50,7 @@ export default function PickerCore ({
           value={value}
           onValueChange={onChange}
           items={DataPicker}
-          placeholder={{ label: 'Selecione o movito...', value: '' }}
+          placeholder={{label: placeholder, value: ''}}
         />
       </PickerTextContainer>
       {error?.hasError && (
@@ -57,5 +59,5 @@ export default function PickerCore ({
         </ErrorContainer>
       )}
     </PickerContainer>
-  )
+  );
 }

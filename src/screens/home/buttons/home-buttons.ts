@@ -1,15 +1,8 @@
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
-import {
-  faBookDead,
-  faBookJournalWhills,
-  faBookOpen,
-  faBookOpenReader,
-  faList12,
-  faLock,
-  faSkull,
-} from '@fortawesome/free-solid-svg-icons';
-import {Routes} from '../../../../App';
+import {faSkull, faUserGroup} from '@fortawesome/free-solid-svg-icons';
 import {UseNavigation} from '../../../core/hooks/use-navigation';
+import {faUser} from '@fortawesome/free-regular-svg-icons';
+import {Routes} from '../../../../App';
 
 type HomeButtonProp = {
   index: string;
@@ -22,12 +15,12 @@ export default function HomeButtonsConstructor() {
   const navigation = UseNavigation();
 
   const HomeButtonMenu: HomeButtonProp[] = [
-    /*     {
+    {
       index: '1',
-      textButton: 'Teste de botão',
-      iconButton: faSkull,
-      navigate: () => navigation.navigate(Routes.teste),
-    }, */
+      textButton: 'Cadastro de Usuário',
+      iconButton: faUserGroup,
+      navigate: () => navigation.navigate(Routes.user),
+    },
   ];
 
   return HomeButtonMenu;

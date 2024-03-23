@@ -1,26 +1,23 @@
-import React, { type ReactElement } from 'react'
+import React, {type ReactElement} from 'react';
+import {Colors} from '../../assets/Colors';
 import {
   DatePickerContainer,
   DatePickerField,
   DatePickerTextContainer,
   Label,
-  LabelContainer
-} from './base-date-picker-style'
-import { type StyleProp, type ViewStyle } from 'react-native'
-import { Colors } from '../../assets/Colors'
+  LabelContainer,
+} from './base-date-picker-style';
 
 interface Props {
-  label?: string
-  onChange: ((date: Date) => void) | undefined
-  date: Date
-  style?: StyleProp<ViewStyle>
+  label?: string;
+  onChange: ((date: Date) => void) | undefined;
+  date: Date;
 }
 
-export default function DatePickerCore ({
+export default function DatePickerCore({
   label = 'SELECIONE A DATA',
   onChange,
   date,
-  style
 }: Props): ReactElement {
   return (
     <DatePickerContainer>
@@ -41,5 +38,5 @@ export default function DatePickerCore ({
         </LabelContainer>
       </DatePickerTextContainer>
     </DatePickerContainer>
-  )
+  );
 }

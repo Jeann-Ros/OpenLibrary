@@ -4,40 +4,40 @@ import {
   Label,
   LabelWrapper,
   TextFieldMainWrapper,
-  TextFieldWrapper
-} from './text-field-default.styles'
-import { Fonts } from '../../assets/fonts'
-import { Colors } from '../../assets/Colors'
-import { TextInput, type KeyboardType } from 'react-native'
-import React, { type ReactElement } from 'react'
+  TextFieldWrapper,
+} from './text-field-default.styles';
+import {Fonts} from '../../assets/fonts';
+import {Colors} from '../../assets/Colors';
+import {TextInput, type KeyboardType} from 'react-native';
+import React, {type ReactElement} from 'react';
 
 interface Props {
-  type: KeyboardType
-  onChange: (text: string, rawText?: string | undefined) => void
-  value: string
-  label: string
-  placeholder?: string
+  type: KeyboardType;
+  onChange: (text: string, rawText?: string | undefined) => void;
+  value: string;
+  label: string;
+  placeholder?: string;
   error?: {
-    message: string
-    hasError: boolean
-  }
-  secureTextEntry?: boolean
-  editable?: boolean
-  maxLength?: number
-  acitonExit: () => void
+    message: string;
+    hasError: boolean;
+  };
+  secureTextEntry?: boolean;
+  editable?: boolean;
+  maxLength?: number;
+  acitonExit?: () => void;
 }
 
-export default function DefaultTextField ({
+export default function DefaultTextField({
   type,
   onChange,
   value,
   label,
   placeholder,
-  error = { hasError: false, message: '' },
+  error = {hasError: false, message: ''},
   secureTextEntry,
   editable,
   maxLength,
-  acitonExit
+  acitonExit,
 }: Props): ReactElement {
   return (
     <TextFieldMainWrapper>
@@ -49,7 +49,7 @@ export default function DefaultTextField ({
           placeholderTextColor={Colors.gray}
           style={{
             fontFamily: Fonts.Bold,
-            fontSize: 20
+            fontSize: 20,
           }}
           value={value}
           onChangeText={onChange}
@@ -67,5 +67,5 @@ export default function DefaultTextField ({
         </ErrorWrapper>
       )}
     </TextFieldMainWrapper>
-  )
+  );
 }

@@ -13,6 +13,7 @@ export const DatePickerTextContainer = styled(View)<{hasError?: boolean}>`
 
 export const DatePickerField = styled(DatePicker)`
   background-color: rgb(242, 242, 242);
+  height: 100px;
   align-self: center;
 `;
 
