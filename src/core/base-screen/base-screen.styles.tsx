@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const MainWrapper = styled(SafeAreaView)`
   flex: 1;
   height: 100%;
+  width: 100%;
 `;
 
 export const MainChildrenWrapper = styled(View)``;

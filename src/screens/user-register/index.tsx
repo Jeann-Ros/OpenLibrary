@@ -8,6 +8,9 @@ import DatePickerCore from '../../core/base-date-picker/base-date-picker';
 import PickerCore from '../../core/base-picker/base-picker';
 import CoreButton from '../../core/button';
 import UserBuilder from '../../utils/UsuarioBuilder';
+import CategoryModal from './category-modal';
+import {CheckButton} from '../../core/checkbox/style';
+import CheckboxButton from './modal-button';
 
 function UserRegister(): ReactElement {
   const [NomeUsuario, setNomeUsuario] = useState<string>('');
@@ -15,12 +18,23 @@ function UserRegister(): ReactElement {
   const [CpfUsuario, setCpfUsuario] = useState<string>('');
   const [ContatoUsuario, setContatoUsuario] = useState<string>('');
   const [FlagContato, setFlagContato] = useState<number>(0);
+  const [ModalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [Categorias, setCategorias] = useState<string[]>([]);
   const navigator = UseNavigation();
 
   const DataPicker = [
     {label: 'E-mail', value: 0},
     {label: 'Telefone', value: 1},
   ];
+
+  const TrueModalFlag = () => {
+    setModalIsOpen(true);
+  };
+
+  const CloseModalFlag = (value: string[]) => {
+    setCategorias(value);
+    setModalIsOpen(false);
+  };
 
   const MeioDeContato = (): ReactElement => {
     if (FlagContato === 1) {
@@ -55,6 +69,11 @@ function UserRegister(): ReactElement {
           navigator.goBack();
         },
       }}>
+      <CategoryModal
+        isVisible={ModalIsOpen}
+        onClose={value => CloseModalFlag(value)}
+        label="Escolha as categorias..."
+      />
       <Container>
         <DefaultTextField
           maxLength={120}
@@ -97,6 +116,13 @@ function UserRegister(): ReactElement {
       </Container>
       <Container>{MeioDeContato()}</Container>
       <Container>
+        <CheckboxButton
+          label="Categorias favoritas"
+          onPress={() => TrueModalFlag()}
+          values={Categorias}
+        />
+      </Container>
+      <Container>
         <CoreButton
           text="CADASTRAR"
           action={() =>
@@ -106,6 +132,7 @@ function UserRegister(): ReactElement {
                 CpfUsuario,
                 DataNascimento,
                 ContatoUsuario,
+                Categorias,
               ),
             )
           }

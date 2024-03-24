@@ -30,7 +30,6 @@ export default function DatePickerCore({
             fadeToColor="none"
             onDateChange={onChange}
             date={date}
-            maximumDate={new Date()}
             androidVariant="iosClone"
             mode="date"
             locale="pt"

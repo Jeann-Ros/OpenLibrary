@@ -7,5 +7,4 @@ export const TextComponent = styled(BaseText)`
   font-family: ${Fonts.Bold};
   font-size: 20px;
   color: ${Colors.primary_brown};
-  margin-top: auto;
 `;
