@@ -1,8 +1,7 @@
 import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
-import {faSkull, faUserGroup} from '@fortawesome/free-solid-svg-icons';
-import {UseNavigation} from '../../../core/hooks/use-navigation';
-import {faUser} from '@fortawesome/free-regular-svg-icons';
+import {faBook, faUserGroup} from '@fortawesome/free-solid-svg-icons';
 import {Routes} from '../../../../App';
+import {UseNavigation} from '../../../core/hooks/use-navigation';
 
 type HomeButtonProp = {
   index: string;
@@ -20,6 +19,12 @@ export default function HomeButtonsConstructor() {
       textButton: 'Cadastro de Usuário',
       iconButton: faUserGroup,
       navigate: () => navigation.navigate(Routes.user),
+    },
+    {
+      index: '2',
+      textButton: 'Cadastro de Livro',
+      iconButton: faBook,
+      navigate: () => navigation.navigate(Routes.book),
     },
   ];
 

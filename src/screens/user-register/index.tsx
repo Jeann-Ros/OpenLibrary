@@ -1,16 +1,15 @@
 import {ReactElement, useState} from 'react';
-import BaseScreen from '../../core/base-screen/base-screen';
-import {UseNavigation} from '../../core/hooks/use-navigation';
-import {Container, ContainerRow} from './style';
-import DefaultTextField from '../../core/text-field-default/text-field-default';
-import TextField from '../../core/base-text-field/base-text-field';
 import DatePickerCore from '../../core/base-date-picker/base-date-picker';
 import PickerCore from '../../core/base-picker/base-picker';
+import BaseScreen from '../../core/base-screen/base-screen';
+import TextField from '../../core/base-text-field/base-text-field';
 import CoreButton from '../../core/button';
+import {UseNavigation} from '../../core/hooks/use-navigation';
+import DefaultTextField from '../../core/text-field-default/text-field-default';
 import UserBuilder from '../../utils/UsuarioBuilder';
 import CategoryModal from './category-modal';
-import {CheckButton} from '../../core/checkbox/style';
 import CheckboxButton from './modal-button';
+import {Container} from './style';
 
 function UserRegister(): ReactElement {
   const [NomeUsuario, setNomeUsuario] = useState<string>('');
