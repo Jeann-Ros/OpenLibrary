@@ -1,7 +1,7 @@
-import {ReactElement} from 'react';
-import {Container, TouchableContainer} from './style';
+import { ReactElement } from 'react';
+import { Container, TouchableContainer } from './style';
 import Text from '../../../core/base-text/base-text';
-import {Colors} from '../../../assets/Colors';
+import { Colors } from '../../../assets/Colors';
 
 interface ButtonProps {
   values: string[];
@@ -37,16 +37,16 @@ export default function CheckboxButton({
       <TouchableContainer onPress={() => onPress()}>
         <Text
           numOfLines={1}
-          style={values.length > 0 ? {color: 'black'} : {color: Colors.gray}}>
+          style={values.length > 0 ? { color: 'black' } : { color: Colors.gray }}>
           {values.length > 0
             ? values
-                .map(
-                  item =>
-                    CategoriasValue[item as keyof typeof CategoriasValue] ||
-                    item,
-                )
-                .toString() + '.'
-            : 'Selecione as categorias...'}
+              .map(
+                item =>
+                  CategoriasValue[item as keyof typeof CategoriasValue] ||
+                  item,
+              )
+              .toString() + '.'
+            : 'Selecione pelo menos 1 categoria...'}
         </Text>
       </TouchableContainer>
     </Container>

@@ -1,5 +1,5 @@
-import React, {type ReactElement} from 'react';
-import {Colors} from '../../assets/Colors';
+import React, { type ReactElement } from 'react';
+import { Colors } from '../../assets/Colors';
 import {
   DatePickerContainer,
   DatePickerField,
@@ -12,12 +12,16 @@ interface Props {
   label?: string;
   onChange: ((date: Date) => void) | undefined;
   date: Date;
+  minimumDate?: Date;
+  maximumDate?: Date
 }
 
 export default function DatePickerCore({
   label = 'SELECIONE A DATA',
   onChange,
   date,
+  minimumDate,
+  maximumDate
 }: Props): ReactElement {
   return (
     <DatePickerContainer>
@@ -33,6 +37,8 @@ export default function DatePickerCore({
             androidVariant="iosClone"
             mode="date"
             locale="pt"
+            minimumDate={minimumDate}
+            maximumDate={maximumDate}
           />
         </LabelContainer>
       </DatePickerTextContainer>

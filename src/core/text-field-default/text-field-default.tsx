@@ -6,10 +6,10 @@ import {
   TextFieldMainWrapper,
   TextFieldWrapper,
 } from './text-field-default.styles';
-import {Fonts} from '../../assets/fonts';
-import {Colors} from '../../assets/Colors';
-import {TextInput, type KeyboardType} from 'react-native';
-import React, {type ReactElement} from 'react';
+import { Fonts } from '../../assets/fonts';
+import { Colors } from '../../assets/Colors';
+import { TextInput, type KeyboardType } from 'react-native';
+import React, { type ReactElement } from 'react';
 
 interface Props {
   type: KeyboardType;
@@ -33,7 +33,7 @@ export default function DefaultTextField({
   value,
   label,
   placeholder,
-  error = {hasError: false, message: ''},
+  error = { hasError: false, message: '' },
   secureTextEntry,
   editable,
   maxLength,
