@@ -1,9 +1,9 @@
-interface User {
-  nome: string;
-  cpf: string;
-  dataNasc: Date;
-  meioContato: string;
-  categoriasFav: string[];
+export interface User {
+  usu_nome: string;
+  usu_cpf: string;
+  usu_nascimento: Date;
+  usu_contato: {telefone?: string; email?: string};
+  categorias: number[];
 }
 
 export default function UserBuilder(
@@ -11,13 +11,18 @@ export default function UserBuilder(
   cpf: string,
   dataNasc: Date,
   meioContato: string,
-  categoriasFav: string[],
+  categoriasFav: number[],
 ): User {
+  console.log(meioContato.indexOf('@'));
+
   return {
-    nome: nome,
-    cpf: cpf,
-    dataNasc: dataNasc,
-    meioContato: meioContato,
-    categoriasFav: categoriasFav,
+    usu_nome: nome,
+    usu_cpf: cpf,
+    usu_nascimento: dataNasc,
+    usu_contato:
+      meioContato.indexOf('@') != -1
+        ? {email: meioContato}
+        : {telefone: meioContato},
+    categorias: categoriasFav,
   };
 }

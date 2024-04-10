@@ -1,31 +1,30 @@
 import {
   TextInputMask,
   type TextInputMaskOptionProp,
-  type TextInputMaskTypeProp
-} from 'react-native-masked-text'
+  type TextInputMaskTypeProp,
+} from 'react-native-masked-text';
 import {
   ErrorMessage,
   ErrorWrapper,
   Label,
   LabelWrapper,
   TextFieldMainWrapper,
-  TextFieldWrapper
-} from './base-text-field.styles'
-import { Fonts } from '../../assets/fonts'
-import { Colors } from '../../assets/Colors'
+  TextFieldWrapper,
+} from './base-text-field.styles';
+import {Fonts} from '../../assets/fonts';
+import {Colors} from '../../assets/Colors';
 
 interface Props {
-  type: TextInputMaskTypeProp
-  onChange: (text: string, rawText?: string | undefined) => void
-  options?: TextInputMaskOptionProp
-  value: string
-  label: string
-  placeholder?: string
-  maxLength?: number
+  type: TextInputMaskTypeProp;
+  onChange: (text: string, rawText?: string | undefined) => void;
+  options?: TextInputMaskOptionProp;
+  value: string;
+  label: string;
+  placeholder?: string;
   error?: {
-    message: string
-    hasError: boolean
-  }
+    message: string;
+    hasError: boolean;
+  };
 }
 
 export default function TextField({
@@ -36,7 +35,6 @@ export default function TextField({
   label,
   placeholder,
   error,
-  maxLength,
 }: Props) {
   return (
     <TextFieldMainWrapper>
@@ -45,12 +43,11 @@ export default function TextField({
           <Label>{label}</Label>
         </LabelWrapper>
         <TextInputMask
-          maxLength={maxLength}
           placeholderTextColor={Colors.gray}
           placeholder={placeholder}
           style={{
             fontFamily: Fonts.Bold,
-            fontSize: 20
+            fontSize: 20,
           }}
           options={options}
           value={value}
@@ -64,5 +61,5 @@ export default function TextField({
         </ErrorWrapper>
       )}
     </TextFieldMainWrapper>
-  )
+  );
 }

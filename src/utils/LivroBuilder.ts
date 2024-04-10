@@ -1,8 +1,10 @@
 interface Livro {
-  nomeLivro: string;
-  anoLancamento: number;
-  categoria: number;
-  quantidadeLivro: number;
+  livro_nome: string;
+  livro_ano: number;
+  livro_categoria: number;
+  livro_autores: string[];
+  livro_paginas: number;
+  livro_editora: string;
 }
 
 export default function LivroBuilder(
@@ -15,9 +17,11 @@ export default function LivroBuilder(
   let quantidadeLivroAux = parseInt(quantidadeLivro);
 
   return {
-    nomeLivro: nomeLivro,
-    anoLancamento: anoLancamentoAux,
-    quantidadeLivro: quantidadeLivroAux,
-    categoria: categoria,
+    livro_nome: nomeLivro,
+    livro_ano: anoLancamentoAux,
+    livro_paginas: quantidadeLivroAux,
+    livro_categoria: categoria,
+    livro_autores: ['Henrique', 'Jean', 'Guilherme'],
+    livro_editora: 'Trio Parada Dura',
   };
 }

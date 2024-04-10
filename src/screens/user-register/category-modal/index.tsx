@@ -16,7 +16,7 @@ import CoreButton from '../../../core/button';
 
 interface ModalProps {
   isVisible: boolean;
-  onClose: (values: string[]) => void;
+  onClose: (values: number[]) => void;
   label?: string;
 }
 
@@ -49,20 +49,20 @@ export default function CategoryModal({
             </ContainerModalRow>
             <Checkbox
               options={[
-                {label: 'Ação', value: 'ACAO'},
-                {label: 'Aventura', value: 'AVENTURA'},
-                {label: 'Ficção', value: 'FICCAO'},
-                {label: 'Romance', value: 'ROMANCE'},
-                {label: 'Suspense', value: 'SUSPENSE'},
-                {label: 'Mistério', value: 'MISTERIO'},
-                {label: 'Fantasia', value: 'FANTASIA'},
-                {label: 'Terror', value: 'TERROR'},
-                {label: 'Sci-Fi', value: 'SCI_FI'},
-                {label: 'Histórico', value: 'HISTORICO'},
-                {label: 'Não Ficção', value: 'NAO_FICCAO'},
-                {label: 'Autoajuda', value: 'AUTOAJUDA'},
-                {label: 'Biografia', value: 'BIOGRAFIA'},
-                {label: 'Poesia', value: 'POESIA'},
+                {label: 'Ação', value: 1},
+                {label: 'Aventura', value: 2},
+                {label: 'Ficção', value: 3},
+                {label: 'Romance', value: 4},
+                {label: 'Suspense', value: 5},
+                {label: 'Mistério', value: 6},
+                {label: 'Fantasia', value: 7},
+                {label: 'Terror', value: 8},
+                {label: 'Sci-Fi', value: 9},
+                {label: 'Histórico', value: 10},
+                {label: 'Não Ficção', value: 11},
+                {label: 'Autoajuda', value: 12},
+                {label: 'Biografia', value: 13},
+                {label: 'Poesia', value: 14},
               ]}
               checkedValue={Categorias}
               onChange={value => {

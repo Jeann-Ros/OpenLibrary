@@ -7,8 +7,8 @@ import Text from '../base-text/base-text';
 import {CheckButton, CheckButtonContainer} from './style';
 
 interface CheckProps {
-  options: {label: string; value: string}[];
-  checkedValue: string[];
+  options: {label: string; value: number}[];
+  checkedValue: number[];
   onChange(value: any): any;
 }
 

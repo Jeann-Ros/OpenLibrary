@@ -1,10 +1,10 @@
-import { ReactElement } from 'react';
-import { Container, TouchableContainer } from './style';
+import {ReactElement} from 'react';
+import {Container, TouchableContainer} from './style';
 import Text from '../../../core/base-text/base-text';
-import { Colors } from '../../../assets/Colors';
+import {Colors} from '../../../assets/Colors';
 
 interface ButtonProps {
-  values: string[];
+  values: number[];
   onPress: () => void;
   label: string;
 }
@@ -15,20 +15,20 @@ export default function CheckboxButton({
   label,
 }: ButtonProps): ReactElement {
   const CategoriasValue = {
-    ACAO: 'Ação',
-    AVENTURA: 'Aventura',
-    FICCAO: 'Ficção',
-    ROMANCE: 'Romance',
-    SUSPENSE: 'Suspense',
-    MISTERIO: 'Mistério',
-    FANTASIA: 'Fantasia',
-    TERROR: 'Terror',
-    SCI_FI: 'Sci-Fi',
-    HISTORICO: 'Histórico',
-    NAO_FICCAO: 'Não Ficção',
-    AUTOAJUDA: 'Autoajuda',
-    BIOGRAFIA: 'Biografia',
-    POESIA: 'Poesia',
+    1: 'Ação',
+    2: 'Aventura',
+    3: 'Ficção',
+    4: 'Romance',
+    5: 'Suspense',
+    6: 'Mistério',
+    7: 'Fantasia',
+    8: 'Terror',
+    9: 'Sci-Fi',
+    10: 'Histórico',
+    11: 'Não Ficção',
+    12: 'Autoajuda',
+    13: 'Biografia',
+    14: 'Poesia',
   };
 
   return (
@@ -37,15 +37,15 @@ export default function CheckboxButton({
       <TouchableContainer onPress={() => onPress()}>
         <Text
           numOfLines={1}
-          style={values.length > 0 ? { color: 'black' } : { color: Colors.gray }}>
+          style={values.length > 0 ? {color: 'black'} : {color: Colors.gray}}>
           {values.length > 0
             ? values
-              .map(
-                item =>
-                  CategoriasValue[item as keyof typeof CategoriasValue] ||
-                  item,
-              )
-              .toString() + '.'
+                .map(
+                  item =>
+                    CategoriasValue[item as keyof typeof CategoriasValue] ||
+                    item,
+                )
+                .toString() + '.'
             : 'Selecione pelo menos 1 categoria...'}
         </Text>
       </TouchableContainer>
