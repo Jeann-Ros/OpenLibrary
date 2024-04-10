@@ -1,6 +1,6 @@
-interface Livro {
+export interface Livro {
   livro_nome: string;
-  livro_ano: number;
+  lanca_ano: number;
   livro_categoria: number;
   livro_autores: string[];
   livro_paginas: number;
@@ -18,7 +18,7 @@ export default function LivroBuilder(
 
   return {
     livro_nome: nomeLivro,
-    livro_ano: anoLancamentoAux,
+    lanca_ano: anoLancamentoAux,
     livro_paginas: quantidadeLivroAux,
     livro_categoria: categoria,
     livro_autores: ['Henrique', 'Jean', 'Guilherme'],
