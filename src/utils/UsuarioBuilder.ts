@@ -1,3 +1,5 @@
+import {atom} from 'jotai';
+
 export interface User {
   usu_nome: string;
   usu_cpf: string;
@@ -26,3 +28,5 @@ export default function UserBuilder(
     categorias: categoriasFav,
   };
 }
+
+export const usuarioAtom = atom<User[]>([]);
