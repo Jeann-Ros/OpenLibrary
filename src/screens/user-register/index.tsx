@@ -24,7 +24,7 @@ function UserRegister(): ReactElement {
   const [botaoHabilitado, setBotaoHabilitado] = useState<boolean>(false);
   const navigator = UseNavigation();
 
-  const ip = '172.20.0.201';
+  const ip = '192.168.3.99';
   const DataPicker = [
     {label: 'E-mail', value: 2},
     {label: 'Telefone', value: 1},
