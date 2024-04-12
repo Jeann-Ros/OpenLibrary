@@ -25,6 +25,7 @@ interface Props {
     message: string;
     hasError: boolean;
   };
+  maxLength?: number;
 }
 
 export default function TextField({
@@ -35,6 +36,7 @@ export default function TextField({
   label,
   placeholder,
   error,
+  maxLength = 200,
 }: Props) {
   return (
     <TextFieldMainWrapper>
@@ -43,6 +45,7 @@ export default function TextField({
           <Label>{label}</Label>
         </LabelWrapper>
         <TextInputMask
+          maxLength={maxLength}
           placeholderTextColor={Colors.gray}
           placeholder={placeholder}
           style={{
