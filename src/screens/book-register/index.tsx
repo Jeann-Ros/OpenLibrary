@@ -6,7 +6,7 @@ import DefaultTextField from '../../core/text-field-default/text-field-default';
 import TextField from '../../core/base-text-field/base-text-field';
 import PickerCore from '../../core/base-picker/base-picker';
 import CoreButton from '../../core/button';
-import LivroBuilder, {Livro} from '../../utils/LivroBuilder';
+import LivroBuilder, {Livro, livroAtom} from '../../utils/LivroBuilder';
 import {Alert} from 'react-native';
 import DatePickerCore from '../../core/base-date-picker/base-date-picker';
 import {useAtom} from 'jotai';
@@ -20,6 +20,7 @@ export default function BookRegister(): ReactElement {
   const [NumeroCategoria, setNumeroCategoria] = useState<number>(0);
   const [botaoHabilitado, setBotaoHabilitado] = useState<boolean>(true);
   const [, setUsers] = useAtom(usuarioAtom);
+  const [, setLivro] = useAtom(livroAtom);
   const DataPicker = [
     {label: 'Ação', value: 1},
     {label: 'Aventura', value: 2},
@@ -39,9 +40,10 @@ export default function BookRegister(): ReactElement {
   interface CadastraLivrosResponse {
     message: string;
     usuarios: User[];
+    livro: string;
   }
 
-  const ip = '192.168.3.99';
+  const ip = '192.168.15.61';
 
   async function CadastrarLivro(params: Livro): Promise<any> {
     console.log(params);
@@ -58,7 +60,10 @@ export default function BookRegister(): ReactElement {
       }
 
       const responseData: CadastraLivrosResponse = await response.json();
+      const livroInserido = responseData.livro;
       const usuariosNotificados = responseData.usuarios;
+
+      setLivro(livroInserido);
       setUsers(usuariosNotificados);
 
       Alert.alert('Sucesso!', 'O livro foi cadastrado com sucesso!', [

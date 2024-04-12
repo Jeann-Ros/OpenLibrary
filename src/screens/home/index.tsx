@@ -6,14 +6,18 @@ import HomeButtons from './buttons';
 import HomeButtonsConstructor from './buttons/home-buttons';
 import {User, usuarioAtom} from '../../utils/UsuarioBuilder';
 import {useAtom, useAtomValue} from 'jotai';
+import {useFocusEffect} from '@react-navigation/native';
+import {livroAtom} from '../../utils/LivroBuilder';
 
 export default function Home(): ReactElement {
   const Data = HomeButtonsConstructor();
   const [usuario, setUsers] = useAtom(usuarioAtom);
+  const [livro, setLivro] = useAtom(livroAtom);
 
-  useEffect(() => {
+  useFocusEffect(() => {
+    console.log('Quantidade de usuários: ', usuario.length);
     renderModal();
-  }, [usuario]);
+  });
 
   const renderModal = () => {
     if (usuario.length > 0) {
@@ -21,11 +25,12 @@ export default function Home(): ReactElement {
       usuario.forEach(user => {
         nomeUsuarios += user.usu_nome + '\n';
       });
-      Alert.alert('Usuarios notificados', nomeUsuarios, [
+      Alert.alert('Usuarios notificados pelo livro ' + livro, nomeUsuarios, [
         {
           text: 'ok',
           onPress: () => {
             setUsers([]);
+            setLivro('');
           },
         },
       ]);

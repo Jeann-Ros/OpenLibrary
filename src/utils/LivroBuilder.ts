@@ -1,3 +1,5 @@
+import {atom} from 'jotai';
+
 export interface Livro {
   livro_nome: string;
   lanca_ano: Date;
@@ -22,3 +24,5 @@ export default function LivroBuilder(
     livro_editora: 'Editora Abreu',
   };
 }
+
+export const livroAtom = atom<string>('');
