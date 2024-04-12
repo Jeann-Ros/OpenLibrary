@@ -8,11 +8,12 @@ import PickerCore from '../../core/base-picker/base-picker';
 import CoreButton from '../../core/button';
 import LivroBuilder, {Livro} from '../../utils/LivroBuilder';
 import {Alert} from 'react-native';
+import DatePickerCore from '../../core/base-date-picker/base-date-picker';
 
 export default function BookRegister(): ReactElement {
   const navigator = useNavigation();
   const [NomeLivro, setNomeLivro] = useState<string>('');
-  const [AnoDeLancamento, setAnoDeLancamento] = useState<string>('');
+  const [AnoDeLancamento, setAnoDeLancamento] = useState<Date>(new Date());
   const [Quantidade, setQuantidade] = useState<string>('');
   const [NumeroCategoria, setNumeroCategoria] = useState<number>(0);
   const [botaoHabilitado, setBotaoHabilitado] = useState<boolean>(true);
@@ -37,18 +38,29 @@ export default function BookRegister(): ReactElement {
 
   async function CadastrarLivro(params: Livro): Promise<any> {
     console.log(params);
-    const response = await fetch(`http://${ip}:8000/livro`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(params),
-    });
+    try {
+      const response = await fetch(`http://${ip}:8000/livro`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(params),
+      });
 
-    if (!response.ok) {
-      console.log('Erro no cadastro de usuário');
-      return response.json();
+      if (!response.ok) {
+        console.log('Erro no cadastro de usuário');
+        return response.json();
+      }
+
+      Alert.alert('Sucesso!', 'O livro foi cadastrado com sucesso!', [
+        {
+          text: 'OK',
+          onPress: () => {
+            navigator.goBack();
+          },
+        },
+      ]);
+    } catch (error) {
+      console.log(error);
     }
-
-    Alert.alert('Sucesso!', 'O livro foi cadastrado com sucesso!');
   }
 
   useEffect(() => {
@@ -57,12 +69,11 @@ export default function BookRegister(): ReactElement {
 
   const validarCampos = () => {
     const nomeValido = validaNome();
-    const anoValido = validaAno();
     const categoriaValida = validaCategoria();
     const quantidadeValida = validaQuantidade();
 
     const camposPreenchidosEVálidos =
-      nomeValido && anoValido && categoriaValida && quantidadeValida;
+      nomeValido && categoriaValida && quantidadeValida;
     setBotaoHabilitado(camposPreenchidosEVálidos);
   };
 
@@ -75,28 +86,17 @@ export default function BookRegister(): ReactElement {
       : 'Nome inválido (minimo de 3 letras)';
   };
 
-  const validaAno = () => {
-    return (
-      parseInt(AnoDeLancamento) >= 1900 && parseInt(AnoDeLancamento) <= 2024
-    );
-  };
-  const mensagemErroAno = () => {
-    return AnoDeLancamento === ''
-      ? 'Campo obrigatório'
-      : 'Ano inválido (1900-2024)';
-  };
-
   const validaCategoria = () => {
     return NumeroCategoria > 0 && NumeroCategoria <= 14;
   };
 
   const validaQuantidade = () => {
-    return parseInt(Quantidade) >= 1 && parseInt(Quantidade) <= 200;
+    return parseInt(Quantidade) >= 1 && parseInt(Quantidade) <= 900;
   };
   const mensagemErroQuantidade = () => {
     return Quantidade === ''
       ? 'Campo obrigatório'
-      : 'Quantidade não permitida (1-200)';
+      : 'Quantidade não permitida (1-900)';
   };
 
   return (
@@ -120,15 +120,14 @@ export default function BookRegister(): ReactElement {
         />
       </Container>
       <Container>
-        <TextField
-          maxLength={4}
-          label="Ano de Lançamento do Livro"
-          value={AnoDeLancamento}
-          onChange={value => setAnoDeLancamento(value)}
-          type="only-numbers"
-          options={{mask: '9999'}}
-          placeholder="Digite o ano de lançamento aqui..."
-          error={{message: mensagemErroAno(), hasError: !validaAno()}}
+        <DatePickerCore
+          date={AnoDeLancamento}
+          onChange={data => {
+            setAnoDeLancamento(data);
+          }}
+          maximumDate={new Date()}
+          minimumDate={new Date(1900, 1, 1)}
+          label="Data de lançamento"
         />
       </Container>
       <Container>
@@ -143,7 +142,7 @@ export default function BookRegister(): ReactElement {
       </Container>
       <Container>
         <TextField
-          label="Quantidade de Livros"
+          label="Quantidade de paginas"
           value={Quantidade}
           onChange={value => setQuantidade(value)}
           type="only-numbers"

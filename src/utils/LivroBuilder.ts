@@ -1,27 +1,24 @@
 export interface Livro {
   livro_nome: string;
-  lanca_ano: number;
+  lanca_ano: Date;
   livro_categoria: number;
-  livro_autores: string[];
   livro_paginas: number;
   livro_editora: string;
 }
 
 export default function LivroBuilder(
   nomeLivro: string,
-  anoLancamento: string,
+  anoLancamento: Date,
   categoria: number,
   quantidadeLivro: string,
 ): Livro {
-  let anoLancamentoAux = parseInt(anoLancamento);
   let quantidadeLivroAux = parseInt(quantidadeLivro);
 
   return {
     livro_nome: nomeLivro,
-    lanca_ano: anoLancamentoAux,
+    lanca_ano: anoLancamento,
     livro_paginas: quantidadeLivroAux,
     livro_categoria: categoria,
-    livro_autores: ['Henrique', 'Jean', 'Guilherme'],
-    livro_editora: 'Trio Parada Dura',
+    livro_editora: 'Editora Abreu',
   };
 }
